@@ -21,35 +21,35 @@ export const Button = styled(props => props.as)<{ size: any | null }>`
     ${props =>
         props.radius === 'base'
             ? css`
-                  ${include.radius['base']}
+                  ${include.radius.base}
               `
             : props.radius === 'sm'
             ? css`
-                  ${include.radius['sm']}
+                  ${include.radius.sm}
               `
             : props.radius === 'md'
             ? css`
-                  ${include.radius['md']}
+                  ${include.radius.md}
               `
             : props.radius === 'lg'
             ? css`
-                  ${include.radius['md']}
+                  ${include.radius.lg}
               `
             : props.radius === 'xl'
             ? css`
-                  ${include.radius['md']}
+                  ${include.radius.xl}
               `
             : props.radisu === '2xl'
             ? css`
-                  ${include.radius['md']}
+                  ${include.radius['2xl']}
               `
             : props.radius === '3xl'
             ? css`
-                  ${include.radius['md']}
+                  ${include.radius['3xl']}
               `
             : props.radius === 'circle'
             ? css`
-                  ${include.radius['md']}
+                  ${include.radius.circle}
               `
             : css`
                   ${include.radius['none']}

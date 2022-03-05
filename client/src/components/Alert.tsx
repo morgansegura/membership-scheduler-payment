@@ -6,14 +6,14 @@ import { alertService, AlertType } from 'api'
 // [Styles]
 import { AlertContainer, AlertContent, AlertItem } from 'styles/Alert'
 // [Icons]
-import { BsXLg } from 'react-icons/bs'
+import { GrFormClose } from 'react-icons/gr'
 
-type propTypes = {
-    id: string
-    fade: boolean
+type AlerProps = {
+    id?: string
+    fade?: boolean
 }
 
-function Alert({ id = 'default-alert', fade = true }: propTypes) {
+function Alert({ id = 'default-alert', fade = true }: AlerProps) {
     const [alerts, setAlerts] = useState<any[]>([])
 
     useEffect(() => {
@@ -35,7 +35,7 @@ function Alert({ id = 'default-alert', fade = true }: propTypes) {
 
                 // auto close alert if required
                 if (alert.autoClose) {
-                    setTimeout(() => removeAlert(alert), 3000)
+                    setTimeout(() => removeAlert(alert), 5000)
                 }
             }
         })
@@ -66,7 +66,7 @@ function Alert({ id = 'default-alert', fade = true }: propTypes) {
             // remove alert after faded out
             setTimeout(() => {
                 setAlerts(alerts => alerts.filter(x => x !== alertWithFade))
-            }, 250)
+            }, 100)
         } else {
             // remove alert
             setAlerts(alerts => alerts.filter(x => x !== alert))
@@ -79,16 +79,18 @@ function Alert({ id = 'default-alert', fade = true }: propTypes) {
         const classes = ['alert', 'alert-dismissable']
 
         const alertTypeClass = {
-            [AlertType.Success]: 'alert alert-success',
-            [AlertType.Error]: 'alert alert-danger',
-            [AlertType.Info]: 'alert alert-info',
-            [AlertType.Warning]: 'alert alert-warning',
+            [AlertType.Success]: 'alert-success',
+            [AlertType.Error]: 'alert-danger',
+            [AlertType.Info]: 'alert-info',
+            [AlertType.Warning]: 'alert-warning',
         }
 
         classes.push(alertTypeClass[alert.type])
 
         if (alert.fade) {
-            classes.push('fade')
+            classes.push('onExit')
+        } else {
+            classes.push('onEnter')
         }
 
         return classes.join(' ')
@@ -103,7 +105,7 @@ function Alert({ id = 'default-alert', fade = true }: propTypes) {
                     <AlertItem key={index} className={cssClasses(alert)}>
                         <span dangerouslySetInnerHTML={{ __html: alert.message }}></span>
                         <a className="close" onClick={() => removeAlert(alert)}>
-                            <BsXLg />
+                            <GrFormClose />
                         </a>
                     </AlertItem>
                 ))}

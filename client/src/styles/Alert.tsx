@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as style from 'styles/config/utilities'
+import { fadeSlideInBottom, fadeSlideOutBottom } from 'styles/keyframes'
 import { rgba } from 'polished'
 
 export const AlertContainer = styled.div`
@@ -9,68 +10,91 @@ export const AlertContainer = styled.div`
 
 export const AlertContent = styled.div`
     position: fixed;
-    top: ${style.sp['10']};
-    right: ${style.sp['4']};
+    width: 100%;
+    gap: ${style.sp['1.5']};
+    bottom: ${style.sp['10']};
+    left: auto;
+    right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
+
+export const Icon = styled.div``
 
 export const AlertItem = styled.div`
     position: relative;
     display: flex;
-    min-width: 100px;
+    max-width: ${style.contain.sm};
     align-items: center;
     justify-content: space-between;
-    padding: ${style.sp['3']} ${style.sp['4']};
+    padding: ${style.sp['2.5']} ${style.sp['2.5']} ${style.sp['2.5']} ${style.sp['5']};
 
-    ${style.fontSizing('16px', '20px')}
-
-    &.fade {
-    }
     &.alert {
-        ${style.radius.md}
-        ${style.shadow.md}
+        ${style.radius.circle}
+        ${style.shadow.sm}
         border: 1px solid transparent;
+        transition: opacity 0.3 ease-out;
+        background-color: ${style.colors.slate900};
+
+        span,
+        svg {
+            color: ${style.colors.slate100};
+            text-shadow: 0 1px 0 ${style.colors.black};
+        }
 
         &.alert-default {
-            background-color: ${style.colors.blue100};
         }
         &.alert-success {
-            background-color: ${style.colors.emerald100};
-            border-color: ${style.colors.emerald200};
         }
         &.alert-danger {
-            background-color: ${style.colors.red200};
-            border-color: ${style.colors.red300};
         }
         &.alert-info {
-            background-color: ${style.colors.yellow200};
-            border-color: ${style.colors.yellow300};
         }
         &.alert-warning {
-            background-color: ${style.colors.orange200};
-            border-color: ${style.colors.orange300};
+        }
+        &.onEnter {
+            animation: 0.15s ease-in ${fadeSlideInBottom};
+        }
+
+        &.onExit {
+            animation: 0.15s ease-out ${fadeSlideOutBottom};
         }
         span {
-            padding-right: 30px;
-            text-shadow: 0 1px 0 ${style.colors.white};
-            color: ${style.colors.slate800};
+            flex: 1 0 auto;
+            display: flex;
+            justify-content: center;
+            padding-right: ${style.sp['5']};
+            ${style.fontSizing('16px', '20px', 600)};
+            letter-spacing: 0.04em;
         }
         a {
-            position: absolute;
+            opacity: 0.5;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            right: 0;
-
             width: 30px;
             height: 30px;
             border: 1px solid;
+            transition: opacity 0.3s ease-out;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &:active {
+                opacity: 0.5;
+            }
         }
 
         svg {
-            text-shadow: 0 1px 0 ${style.colors.white};
-            font-size: 12px;
-            color: ${rgba(style.colors.slate800, 0.8)};
+            font-size: 26px;
+
+            path {
+                stroke: ${style.colors.slate100};
+            }
         }
     }
 `

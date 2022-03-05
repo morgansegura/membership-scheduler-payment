@@ -1,4 +1,4 @@
-import React, { ReactEventHandler } from 'react'
+import React from 'react'
 import { useClickAway } from 'react-use'
 // [Styles]
 import { TextField } from 'styles/Form'
@@ -10,6 +10,7 @@ type Props = {
     watch: any
     required?: boolean
     name?: string
+    errors?: string
     // icon
     position?: string
     icon?: JSX.Element
@@ -22,6 +23,7 @@ const TextInput: React.FC<Props> = ({
     type,
     required = false,
     watch,
+    errors,
     name,
     ...rest
 }) => {
@@ -40,7 +42,6 @@ const TextInput: React.FC<Props> = ({
     }
 
     useClickAway(inputRef, () => {
-        console.log('useClickaway')
         if (watch(`${name}`).length === 0) setBlur(true)
     })
 

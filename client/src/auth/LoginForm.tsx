@@ -1,5 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import Link from 'next/link'
 // [Auth]
 import { alertService, authService } from 'api'
@@ -9,17 +11,20 @@ import { useStorage } from 'hooks'
 import { Button } from 'components/inputs'
 import { TextInput } from 'components/inputs'
 // [Styles]
-import { AuthForm, FormTitle, ToggleForm } from 'styles/Form'
+import { AuthForm, ErrorList, FormTitle, ToggleForm } from 'styles/Form'
 import { ButtonContainer } from 'styles/Button'
 import { useRouter } from 'next/router'
 
 interface IProps {}
 
+const schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(8).max(32).required(),
+})
+
 export const LoginForm: React.FC<IProps> = (props: IProps) => {
     const router = useRouter()
     const { getStorage, setStorage } = useStorage()
-    const [response, setResponse] = React.useState({})
-    const [isError, setIsError] = React.useState(false)
     const [user, setUser] = React.useState(false)
 
     const {
@@ -27,7 +32,7 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm()
+    } = useForm({ mode: 'onSubmit', resolver: yupResolver(schema) })
 
     const onSubmit = () => {
         authService
@@ -40,12 +45,15 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
                 if (jwt) {
                     setStorage('jwt', jwt)
                     setUser(true)
-                    console.log(res)
                 }
-                alertService.success('Successfully logged in', { keepAfterRouteChange: true })
+                alertService.success('👍🏽  &nbsp Successfully logged in!', {
+                    keepAfterRouteChange: true,
+                })
             })
             .catch(e => {
-                alertService.error
+                alertService.error('🙀  &nbsp Something went wrong!', {
+                    keepAfterRouteChange: true,
+                })
             })
     }
 
@@ -53,37 +61,46 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
         if (user) {
             router.push('/')
         }
+        alertService.error('🙀  &nbsp Something went wrong!', {
+            keepAfterRouteChange: true,
+        })
     }, [user])
 
     return (
         <div>
-            <FormTitle>
-                <h3>Sign into your account</h3>
-            </FormTitle>
             <AuthForm onSubmit={handleSubmit(onSubmit)}>
-                <TextInput
-                    type="email"
-                    name="email"
-                    label="Email"
-                    register={register}
-                    required
-                    watch={watch}
-                />
-                <TextInput
-                    type="password"
-                    name="password"
-                    label="Password"
-                    register={register}
-                    required
-                    watch={watch}
-                />
+                <FormTitle>
+                    <h3>Sign into your account</h3>
+                </FormTitle>
+                <ErrorList className={errors.email?.message ? `error` : ``}>
+                    <TextInput
+                        type="email"
+                        name="email"
+                        label="Email"
+                        register={register}
+                        required
+                        watch={watch}
+                    />
+                    {errors.email?.message && <p>{errors.email?.message}</p>}
+                </ErrorList>
+                <ErrorList className={errors.password?.message ? `error` : ``}>
+                    <TextInput
+                        type="password"
+                        name="password"
+                        label="Password"
+                        register={register}
+                        required
+                        watch={watch}
+                    />
+                    {errors.password?.message && <p>{errors.password?.message}</p>}
+                </ErrorList>
+
                 <ButtonContainer>
-                    <Button theme="primary" radius="md" type="submit">
+                    <Button theme="form" size="lg" radius="circle" type="submit">
                         Sign In
                     </Button>
                 </ButtonContainer>
             </AuthForm>
-            {isError && errors}
 
             <ToggleForm>
                 <p>Need an account?</p>
