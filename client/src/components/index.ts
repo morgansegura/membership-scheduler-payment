@@ -1,4 +1,5 @@
 export * from './inputs'
 export * from './layouts'
+export * from './menus'
 export * from './providers'
 export { Alert } from './Alert'

@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
 	body {
 		padding: 0;
 		margin: 0;
-		background-color: ${include.colors.slate200};
+		background-color: ${props => props.theme.body.bgcolor};
 		font-size: ${include.sp[4]};
 		-webkit-text-size-adjust: 100%;
 		-moz-osx-font-smoothing: grayscale;
@@ -133,6 +133,10 @@ export const GlobalStyle = createGlobalStyle`
 
 	input, select {
 		all: unset;
+	}
+
+	a {
+		text-decoration: none;
 	}
 
 	:root {

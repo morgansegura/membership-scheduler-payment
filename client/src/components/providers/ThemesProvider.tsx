@@ -29,7 +29,7 @@ const ThemesProvider: React.FC<Props> = ({ children }) => {
 
     return (
         <ThemeProvider theme={theme === 'light' ? themeLight : themeDark}>
-            <GlobalStyle />
+            <GlobalStyle theme={theme === 'light' ? themeLight : themeDark} />
             {children}
             <button onClick={themeToggler}>{theme === 'light' ? 'Light' : 'Dark'} Theme</button>
         </ThemeProvider>

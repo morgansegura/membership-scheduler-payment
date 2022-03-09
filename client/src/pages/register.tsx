@@ -8,16 +8,16 @@ import { Base as Layout } from 'components/layouts'
 type Props = {}
 
 const RegisterPage: React.FC<Props> = () => {
-    return (
-        <>
-            <Head>
-                <title>Happy All The Time</title>
-            </Head>
-            <Layout>
-                <RegisterForm />
-            </Layout>
-        </>
-    )
+  return (
+    <>
+      <Head>
+        <title>Happy All The Time</title>
+      </Head>
+      <Layout>
+        <RegisterForm />
+      </Layout>
+    </>
+  )
 }
 
 export default RegisterPage
