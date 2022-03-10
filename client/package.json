@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
     "axios": "^0.26.0",
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
@@ -22,7 +23,8 @@
     "remark": "^14.0.1",
     "remark-html": "^15.0.0",
     "rxjs": "^7.5.4",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",

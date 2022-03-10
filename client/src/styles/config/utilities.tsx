@@ -4,8 +4,8 @@ import { em, rem } from 'polished'
 export const font = {
   base: '16px',
   family: {
-    sans: `'Inter', 'Graphik', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif`,
-    serif: `'Inter', 'Graphik', 'Helvetica Neue', 'Helvetica', 'Arial', serif`,
+    sans: `'Roboto', 'Graphik', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif`,
+    serif: `'Roboto', 'Graphik', 'Helvetica Neue', 'Helvetica', 'Arial', serif`,
     mono: `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace`,
   },
 }
@@ -14,7 +14,7 @@ export const colors = {
   primary: {},
   secondary: {},
   white: '#fff',
-  black: '#111939',
+  black: '#000',
   slate50: '#f8fafc',
   slate100: '#f1f5f9',
   slate200: '#e2e8f0',

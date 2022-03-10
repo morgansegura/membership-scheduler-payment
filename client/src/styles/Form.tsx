@@ -43,6 +43,7 @@ export const TextField = styled.div`
   background-color: ${props => props.theme.input.bgcolor};
   border: ${props => props.theme.input.border};
   outline: 5px solid ${props => props.theme.input.outlineColor};
+  transition: border 0.3s ease-out;
 
   div {
     display: flex;
@@ -73,10 +74,9 @@ export const TextField = styled.div`
     color: ${props => props.theme.form.label};
     ${style.radius.md};
     transition: outline-color 0.3s ease-out;
-
-    &:-webkit-internal-autofill-selected {
-      unset: all;
-    }
+    background-color: transparent;
+    border: none;
+    outline: none;
   }
 
   ${(props: TextFieldProps) =>
@@ -104,7 +104,7 @@ export const TextField = styled.div`
           right: 0;
           background-color: ${props => props.theme.form.bgcolor};
           transform: translateY(-50%);
-          height: 1.3px;
+          height: 3px;
           ${style.radius.base}
         }
       }

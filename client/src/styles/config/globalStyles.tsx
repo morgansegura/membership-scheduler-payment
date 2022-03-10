@@ -132,7 +132,18 @@ export const GlobalStyle = css`
 
   input,
   select {
-    all: unset;
+    /* all: unset !important; */
+    &:-internal-autofill-selected {
+      /* appearance: none !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      color: transparent !important; */
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
   }
 
   a {

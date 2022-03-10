@@ -60,7 +60,7 @@ const HeadContent: React.FC<Props> = ({
 
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Inter:400,700,900&display=swap"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap"
     />
     <link rel="stylesheet" type="text/css" href="/nprogress.css" />
     <link rel="stylesheet" type="text/css" href="/styles.css" />

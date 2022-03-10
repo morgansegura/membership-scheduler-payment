@@ -31,7 +31,7 @@ export class AuthController {
   async register(@Body() body: RegisterDto) {
     const { passwordConfirm, email, ...data } = body;
     const user = await this.userService.findOne({ email });
-    console.log(body.email);
+
     if (user) {
       throw new BadRequestException('User already exists!');
     }
@@ -44,7 +44,6 @@ export class AuthController {
     return this.userService.save({
       ...data,
       email,
-      role: 'member',
       password: hashedPassword,
       message: 'Successfully registered!',
     });

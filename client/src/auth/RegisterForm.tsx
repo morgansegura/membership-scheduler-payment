@@ -64,12 +64,12 @@ const RegisterForm: React.FC<IProps> = () => {
 
   React.useEffect(() => {
     if (registered) {
+      router.push('/login')
       alertService.error(`📩  &nbsp Please check your email to confirm registration.`, {
         keepAfterRouteChange: true,
       })
-      router.push('/login')
     }
-  }, [])
+  }, [registered])
 
   return (
     <div>
@@ -84,7 +84,7 @@ const RegisterForm: React.FC<IProps> = () => {
             label="First Name"
             register={register}
             required
-            autoComplete="false"
+            autoComplete="new-password"
             watch={watch}
           />
           {errors.firstName?.message && <p>{errors.firstName?.message}</p>}
@@ -96,7 +96,7 @@ const RegisterForm: React.FC<IProps> = () => {
             label="Last Name"
             register={register}
             required
-            autoComplete="false"
+            autoComplete="new-password"
             watch={watch}
           />
           {errors.lastName?.message && <p>{errors.lastName?.message}</p>}
@@ -108,7 +108,7 @@ const RegisterForm: React.FC<IProps> = () => {
             label="Email"
             register={register}
             required
-            autoComplete="false"
+            autoComplete="new-password"
             watch={watch}
           />
           {errors.email?.message && <p>{errors.email?.message}</p>}
@@ -120,7 +120,7 @@ const RegisterForm: React.FC<IProps> = () => {
             label="Password"
             register={register}
             required
-            autoComplete="false"
+            autoComplete="new-password"
             watch={watch}
           />
           {errors.password?.message && <p>{errors.password?.message}</p>}
@@ -132,7 +132,7 @@ const RegisterForm: React.FC<IProps> = () => {
             label="Password Confirm"
             register={register}
             required
-            autoComplete="false"
+            autoComplete="off"
             watch={watch}
           />
           {errors.passwordConfirm?.message && <p>{errors.passwordConfirm?.message}</p>}
