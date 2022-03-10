@@ -26,7 +26,7 @@ const ProfileMenu: React.FC<Props> = () => {
   const [response, setResponse] = React.useState('')
   const [userName, setUserName] = React.useState('')
   const [user, setUser] = React.useState(Boolean(getStorage('jwt')))
-  const [userInitial, setUserInitial] = React.useState<IUserData | undefined>(undefined)
+  const [userInitial, setUserInitial] = React.useState('')
   const [showMenu, setShowMenu] = React.useState(false)
   const [focus, setFocus] = React.useState(false)
 
@@ -64,8 +64,8 @@ const ProfileMenu: React.FC<Props> = () => {
   const getUser = () => {
     userService.me().then((res: any) => {
       const { firstName, lastName } = res
-      res.initials = userInitials(`${firstName}`)
-      setUserInitial(res.initials)
+      const initial = userInitials(`${firstName}`)
+      setUserInitial(initial)
       setUserName(`${firstName} ${lastName}`)
     })
   }

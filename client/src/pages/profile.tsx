@@ -8,7 +8,7 @@ import { UpdateUserForm } from 'auth'
 // [Hooks]
 import { useStorage } from 'hooks'
 // [Comonents]
-import { Base as Layout, HeadContent } from 'components/layouts'
+import { Base as Layout, HeadContent, RoleGuardLayout } from 'components/layouts'
 // [Utils]
 import { siteMetadata } from 'utils'
 
@@ -48,9 +48,7 @@ const AccountPage: React.FC<AccountPageProps> = () => {
         description="This is your Account Page"
         canonicalUrl={`${siteMetadata.siteUrl}/`}
       />
-      <Layout>
-        <UserDetails data={userInfo} />
-      </Layout>
+      <Layout>{/* <UserDetails data={userInfo} /> */}</Layout>
     </>
   )
 }

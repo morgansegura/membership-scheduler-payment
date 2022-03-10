@@ -5,7 +5,7 @@ const formatDate = (date: any) =>
   }).format(date)
 
 const userInitials = (name: string) => {
-  let initials = name.length ? name : 'Morgan Segura'
+  let initials = name.length ? name : 'Morgan'
 
   return initials
     .split(' ')
