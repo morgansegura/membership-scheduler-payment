@@ -1,18 +1,22 @@
 import React from 'react'
-import Head from 'next/head'
+
 // [Auth]
 import { RegisterForm } from 'auth'
 // [Comonents]
-import { Base as Layout } from 'components/layouts'
+import { Base as Layout, HeadContent } from 'components/layouts'
+// [Utils]
+import { siteMetadata } from 'utils'
 
 type Props = {}
 
 const RegisterPage: React.FC<Props> = () => {
   return (
     <>
-      <Head>
-        <title>Happy All The Time</title>
-      </Head>
+      <HeadContent
+        title="Registration Page"
+        description="This is the Registration Page"
+        canonicalUrl={`${siteMetadata.siteUrl}/register`}
+      />
       <Layout>
         <RegisterForm />
       </Layout>

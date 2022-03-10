@@ -109,7 +109,7 @@ const NavLinks: React.FC<NavLinksProps> = () => {
       <>
         <Link href="/">
           <a>
-            <NavItem active={isActive('/')}>BaseLink1</NavItem>
+            <NavItem active={isActive('/link1')}>BaseLink1</NavItem>
           </a>
         </Link>
         <Link href="/">

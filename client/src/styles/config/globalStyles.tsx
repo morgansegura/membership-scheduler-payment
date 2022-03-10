@@ -1,162 +1,161 @@
-import { createGlobalStyle } from 'styled-components'
-import * as include from 'styles/config/utilities'
+import { css } from 'styled-components'
+import * as style from 'styles/config/utilities'
 import 'normalize.css'
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = css`
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-size: ${style.sp['4']};
+    background-color: ${props => props.theme.body.bgcolor};
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    color: ${props => props.theme.body.text};
+  }
 
-	 html,
-	body {
-		padding: 0;
-		margin: 0;
-		background-color: ${props => props.theme.body.bgcolor};
-		font-size: ${include.sp[4]};
-		-webkit-text-size-adjust: 100%;
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-	}
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
+    font-family: ${style.font.family.sans};
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    padding: 0;
+    margin: 0;
+  }
 
-	div,
-	span,
-	applet,
-	object,
-	iframe,
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	p,
-	blockquote,
-	pre,
-	a,
-	abbr,
-	acronym,
-	address,
-	big,
-	cite,
-	code,
-	del,
-	dfn,
-	em,
-	img,
-	ins,
-	kbd,
-	q,
-	s,
-	samp,
-	small,
-	strike,
-	strong,
-	sub,
-	sup,
-	tt,
-	var,
-	b,
-	u,
-	i,
-	center,
-	dl,
-	dt,
-	dd,
-	ol,
-	ul,
-	li,
-	fieldset,
-	form,
-	label,
-	legend,
-	table,
-	caption,
-	tbody,
-	tfoot,
-	thead,
-	tr,
-	th,
-	td,
-	article,
-	aside,
-	canvas,
-	details,
-	embed,
-	figure,
-	figcaption,
-	footer,
-	header,
-	hgroup,
-	menu,
-	nav,
-	output,
-	ruby,
-	section,
-	summary,
-	time,
-	mark,
-	audio,
-	video {
-		font-family: ${include.font.family.sans};
-		-webkit-text-size-adjust: 100%;
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-		padding: 0;
-		margin: 0;
-	}
+  h1 {
+    ${style.h1};
+  }
 
+  h2 {
+    ${style.h2};
+  }
 
-	h1 {
-		${include.h1};
-	}
+  h3 {
+    ${style.h3};
+  }
 
-	h2 {
-		${include.h2};
-	}
+  h4 {
+    ${style.h4};
+  }
 
-	h3 {
-		${include.h3};
-	}
+  h5 {
+    ${style.h5};
+  }
 
-	h4 {
-		${include.h4};
-	}
+  label {
+    ${style.label};
+  }
 
-	h5 {
-		${include.h5};
-	}
+  img {
+    width: 100%;
+  }
 
-	label {
-		${include.label};
-	}
+  input,
+  select {
+    all: unset;
+  }
 
-	img {
-		width: 100%;
-	}
+  a {
+    text-decoration: none;
+  }
 
-	input, select {
-		all: unset;
-	}
+  :root {
+    --grid-gutter: ${style.sp['2']};
 
-	a {
-		text-decoration: none;
-	}
-
-	:root {
-		--grid-gutter: ${include.sp['2']};
-
-		${include.media.md`
-			--grid-gutter: ${include.sp['3']};
+    ${style.media.md`
+			--grid-gutter: ${style.sp['3']};
 		`}
 
-		${include.media.xl`
-			--grid-gutter: ${include.sp['4']};
+    ${style.media.xl`
+			--grid-gutter: ${style.sp['4']};
 		`}
 
-		${include.media.xxl`
-			--grid-gutter: ${include.sp['4']};
+		${style.media.xxl`
+			--grid-gutter: ${style.sp['4']};
 		`}
 
-		${include.above(include.contain['offset'])`
-			--grid-gutter: ${include.sp['4']};
+		${style.above(style.contain['offset'])`
+			--grid-gutter: ${style.sp['4']};
 		`}
-	}
-
+  }
 `

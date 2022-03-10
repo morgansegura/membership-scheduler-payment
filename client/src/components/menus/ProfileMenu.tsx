@@ -6,11 +6,12 @@ import { useRouter } from 'next/router'
 import { authService, userService } from 'api'
 // [Hooks]
 import { useStorage } from 'hooks'
-// [Styles]
-import { Avatar, Menu, MenuSelector, Tab, NavItem } from 'styles/ProfileMenu'
-
 // [Utils]
 import { userInitials } from 'utils/misc'
+// [Components]
+import { OpenMenu } from 'components'
+// [Styles]
+import { Avatar, Menu, MenuSelector, Tab, NavItem } from 'styles/ProfileMenu'
 
 type Props = {}
 
@@ -83,6 +84,7 @@ const ProfileMenu: React.FC<Props> = () => {
   return (
     <div ref={profileMenuRef}>
       <MenuSelector onClick={toggleMenu}>
+        <OpenMenu />
         <Avatar focus={focus}>{userInitial}</Avatar>
       </MenuSelector>
       <Menu isVisible={showMenu}>

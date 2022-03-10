@@ -2,13 +2,16 @@ import styled, { css } from 'styled-components'
 import * as style from 'styles/config/utilities'
 import { darken, lighten, readableColor } from 'polished'
 
-export const Button = styled(props => props.as)<{ size: any | null }>`
+export const Button = styled(props => props.as)`
+  position: relative;
+  z-index: 1;
   word-break: break-word;
   max-width: 100%;
   cursor: pointer;
   align-items: center;
-  text-transform: uppercase;
   letter-spacing: 0.03857em;
+  /* letter-spacing: -0.006em; */
+  text-transform: uppercase;
   border: 1px solid transparent;
   transition: border-color 0.3s ease-out, color 0.3s ease-out, background-color 0.3s ease-out;
 
@@ -69,32 +72,32 @@ export const Button = styled(props => props.as)<{ size: any | null }>`
 	${props =>
     props.size === 'xs'
       ? css`
-          ${style.fontSizing('10px', '24px', 600)};
-          padding: 4px 12px;
+          ${style.fontSizing('14px', '20px', 500)};
+          padding: ${style.sp['2.5']} ${style.sp['3']};
         `
       : props.size === 'sm'
       ? css`
-          ${style.fontSizing('11px', '28px', 600)};
-          padding: 6px 18px;
+          ${style.fontSizing('16px', '20px', 500)};
+          padding: ${style.sp['2.5']} ${style.sp['3']};
         `
       : props.size === 'md'
       ? css`
-          ${style.fontSizing('12px', '32px', 600)};
-          padding: 8px 24px;
+          ${style.fontSizing('17px', '20px', 500)};
+          padding: ${style.sp['2.5']} ${style.sp['3']};
         `
       : props.size === 'lg'
       ? css`
-          ${style.fontSizing('14px', '36px', 600)};
-          padding: 10px 50px;
+          ${style.fontSizing('22px', '20px', 500)};
+          padding: ${style.sp['2.5']} ${style.sp['3']};
         `
       : props.size === 'xl'
       ? css`
-          ${style.fontSizing('18px', '40px', 600)};
-          padding: 10px 50px;
+          ${style.fontSizing('26px', '20px', 500)};
+          padding: ${style.sp['2.5']} ${style.sp['3']};
         `
       : css`
-          ${style.fontSizing('12px', '24px', 600)};
-          padding: 8px 16px;
+          ${style.fontSizing('13px', '26px', 600)};
+          padding: ${style.sp['2.5']} ${style.sp['3']};
         `}
 
 

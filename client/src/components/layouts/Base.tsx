@@ -14,12 +14,7 @@ const Base: React.FC<Props> = ({ children }) => {
     <Wrapper>
       <Header />
       <Main>
-        <Container>
-          <BGContainer>
-            <BGThemeColorsFromBottom />
-          </BGContainer>
-          {children}
-        </Container>
+        <Container>{children}</Container>
       </Main>
     </Wrapper>
   )

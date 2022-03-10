@@ -1,13 +1,13 @@
 import { rgba, darken } from 'polished'
 import * as style from 'styles/config/utilities'
 
-export const themeDark = {
+const dark = {
   body: {
     bgcolor: style.colors.slate800,
     text: style.colors.slate100,
   },
   header: {
-    bgcolor: style.colors.slate800,
+    bgcolor: style.colors.slate700,
     text: style.colors.slate100,
   },
   form: {
@@ -47,7 +47,7 @@ export const themeDark = {
   },
 }
 
-export const themeLight = {
+const light = {
   body: {
     bgcolor: style.colors.slate200,
     label: style.colors.slate800,
@@ -57,7 +57,7 @@ export const themeLight = {
     text: style.colors.slate100,
   },
   form: {
-    bgcolor: style.colors.slate100,
+    bgcolor: style.colors.white,
     label: style.colors.slate900,
     border: ``,
     boxshadow: `box-shadow: 0 0 2px ${rgba(style.colors.white, 0.9)},
@@ -87,3 +87,6 @@ export const themeLight = {
     bgcolorDefault: rgba(style.colors.slate200, 0.5),
   },
 }
+
+export const themeDark = { ...dark }
+export const themeLight = { ...light }

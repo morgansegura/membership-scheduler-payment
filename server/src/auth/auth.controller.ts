@@ -29,7 +29,12 @@ export class AuthController {
   ) {}
   @Post('admin/register')
   async register(@Body() body: RegisterDto) {
-    const { passwordConfirm, ...data } = body;
+    const { passwordConfirm, email, ...data } = body;
+    const user = await this.userService.findOne({ email });
+    console.log(body.email);
+    if (user) {
+      throw new BadRequestException('User already exists!');
+    }
 
     if (body.password !== body.passwordConfirm) {
       throw new BadRequestException('Passwords do not match!');
@@ -38,8 +43,10 @@ export class AuthController {
 
     return this.userService.save({
       ...data,
+      email,
       role: 'member',
       password: hashedPassword,
+      message: 'Successfully registered!',
     });
   }
 

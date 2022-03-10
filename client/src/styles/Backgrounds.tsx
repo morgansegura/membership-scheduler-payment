@@ -17,26 +17,24 @@ export const BGThemeColorsFromBottom = styled.div`
     position: fixed;
     height: 100%;
     top: 0;
-    width: 50%;
+    width: 55%;
   }
 
   &:before {
     background: linear-gradient(
-      40deg,
-      ${rgba(style.colors.slate400, 0.6)} 0%,
-      ${rgba(style.colors.slate100, 0.6)} 25%,
-      ${style.colors.white} 45%,
-      ${props => props.theme.body.bgcolor} 80%
+      65deg,
+      ${props => rgba(props.theme.body.bgcolor, 0.9)} 0%,
+      ${rgba(style.colors.pink300, 0.0)} 45%,
+      transparent 60%
     );
     left: 0;
   }
   &:after {
     background: linear-gradient(
-      -40deg,
-      ${rgba(style.colors.slate400, 0.6)} 0%,
-      ${rgba(style.colors.slate100, 0.6)} 25%,
-      ${style.colors.white} 45%,
-      ${props => props.theme.body.bgcolor} 80%
+      -65deg,
+      ${rgba(style.colors.white, 0.9)} 0%,
+      ${rgba(style.colors.blue300, 0.0)} 45%,
+      transparent 60%
     );
     right: 0;
   }
