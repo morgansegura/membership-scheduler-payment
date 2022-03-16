@@ -6,19 +6,19 @@ import { AuthProvider, ThemesProvider } from 'components/providers'
 import { Alert } from 'components'
 
 type Props = {
-    children?: any
+  children?: any
 }
 
 const AppProvider: React.FC<Props> = ({ children }) => {
-    axios.defaults.baseURL = `http://localhost:3001/api/admin/`
-    axios.defaults.withCredentials = true
+  axios.defaults.baseURL = `http://localhost:3001/api/admin/`
+  axios.defaults.withCredentials = true
 
-    return (
-        <ThemesProvider>
-            <Alert />
-            <AuthProvider>{children}</AuthProvider>
-        </ThemesProvider>
-    )
+  return (
+    <ThemesProvider>
+      <Alert />
+      <AuthProvider>{children}</AuthProvider>
+    </ThemesProvider>
+  )
 }
 
 export default AppProvider

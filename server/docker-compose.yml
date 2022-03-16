@@ -11,3 +11,5 @@ services:
       MYSQL_DATABASE: nestjs
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ROOT_HOST: '%'
+# docker run ---name postgres-nest -p 5432:5432 -e POSTGRES_PASSWORD=S3GuRa5361980!! -d postgres
+# docker container stop postgres-nest

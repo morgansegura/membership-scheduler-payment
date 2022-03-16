@@ -12,6 +12,12 @@ type Props = {
   children?: React.ReactChild[] | React.ReactChild
 }
 
+type ThemeType = { theme: any }
+
+const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
+        ${GlobalStyle}
+    `
+
 const ThemesProvider: React.FC<Props> = ({ children }) => {
   const { getStorage, setStorage } = useStorage()
   const startTheme = getStorage('theme') || 'light'
@@ -22,26 +28,16 @@ const ThemesProvider: React.FC<Props> = ({ children }) => {
       setStorage('theme', 'dark')
       setTheme('dark')
     } else {
-      setStorage('theme', 'light')
       setTheme('light')
     }
   }
 
   React.useEffect(() => {}, [theme])
 
-  type ThemeType = { theme: any }
-
-  const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
-        ${GlobalStyle}
-    `
-
   return (
     <ThemeProvider theme={theme === 'light' ? themeLight : themeDark}>
       <GlobalStyles />
       {children}
-      {/* <Button onClick={themeToggler} themed="primary" size="sm">
-        {theme === 'light' ? 'Light' : 'Dark'} Theme
-      </Button> */}
     </ThemeProvider>
   )
 }

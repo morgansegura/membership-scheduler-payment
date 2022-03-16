@@ -77,6 +77,12 @@ export const TextField = styled.div`
     background-color: transparent;
     border: none;
     outline: none;
+
+    &:-internal-autofill-selected {
+      appearance: none !important;
+      background-color: transparent !important;
+      color: transparent !important;
+    }
   }
 
   ${(props: TextFieldProps) =>

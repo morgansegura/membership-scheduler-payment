@@ -10,6 +10,7 @@ import {
   Put,
   Req,
   Res,
+  UploadedFiles,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -19,6 +20,8 @@ import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { Response, Request } from 'express';
 import { AuthGuard } from './auth.guard';
+import { UpdateUserDto } from './dto/updateUser.dto';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
@@ -90,7 +93,6 @@ export class AuthController {
     return user;
   }
 
-  @UseGuards(AuthGuard)
   @Post('admin/signout')
   async signout(@Res({ passthrough: true }) response: Response) {
     response.clearCookie('jwt');
@@ -100,25 +102,18 @@ export class AuthController {
     };
   }
 
-  @UseGuards(AuthGuard)
-  @Patch('admin/user/info')
-  async updateInfo(
-    @Req() request: Request,
-    @Body('firstName') firstName: string,
-    @Body('lastName') lastName: string,
-    @Body('email') email: string,
-  ) {
-    const cookie = request.cookies['jwt'];
-    const { id } = await this.jwtService.verifyAsync(cookie);
+  // @UseGuards(AuthGuard)
+  // @Patch('admin/user/info')
+  // async updateInfo(@Req() request: Request, @Body() body: UpdateUserDto) {
+  //   const cookie = request.cookies['jwt'];
+  //   const { id } = await this.jwtService.verifyAsync(cookie);
 
-    await this.userService.update(id, {
-      firstName,
-      lastName,
-      email,
-    });
+  //   await this.userService.update(id, {
+  //     ...body,
+  //   });
 
-    return this.userService.findOne({ id });
-  }
+  //   return this.userService.findOne({ id });
+  // }
 
   @UseGuards(AuthGuard)
   @Patch('admin/user/pasword')
@@ -140,4 +135,37 @@ export class AuthController {
 
     return this.userService.findOne({ id });
   }
+
+  // @UseGuards(AuthGuard)
+  // @Patch('admin/user/info')
+  // @UseInterceptors(
+  //   FileFieldsInterceptor([
+  //     { name: 'avatar', maxCount: 1 },
+  //     { name: 'background', maxCount: 1 },
+  //   ]),
+  // )
+  // async uploadFile(
+  //   @Req()
+  //   request: Request,
+  //   @UploadedFiles()
+  //   files: {
+  //     avatar?: Express.Multer.File[];
+  //     background?: Express.Multer.File[];
+  //   },
+  // ) {
+  //   const cookie = request.cookies['jwt'];
+
+  //   const { id } = await this.jwtService.verifyAsync(cookie);
+
+  //   const user = await this.userService.findOne({ id });
+
+  //   if (user) {
+  //     user.avatar = files.avatar;
+  //     await this.userService.update(id, { ...user, role: 'admin' });
+  //   }
+
+  //   console.log(user);
+  //   console.log(files);
+  //   return user;
+  // }
 }

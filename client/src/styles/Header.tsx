@@ -13,7 +13,11 @@ export const Header = styled.div`
   margin-top: ${style.sp['3']};
   margin-bottom: ${style.sp['2.5']};
   ${style.radius['md']};
-  padding: ${style.sp['4']} ${style.sp['6']};
+  padding: 0 ${style.sp['6']};
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   ${style.media['lg']`
 		padding-right: ${style.sp['4']};
@@ -35,10 +39,6 @@ export const Header = styled.div`
     line-height: 0;
     transition: color 0.3s ease-out;
 
-    &:last-of-type {
-      margin-right: ${style.sp['3']};
-    }
-
     &:hover {
       color: ${props => props.theme.button.bgcolorForm};
     }
@@ -48,12 +48,13 @@ export const Menu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex: 1 0 auto;
 `
 export const Logo = styled.div`
-  ${style.fontSizing('14px', '28px', 500)}
-  letter-spacing: 1px;
+  ${style.fontSizing('14px', '28px', 700)}
+  letter-spacing: 0.0523em;
   text-transform: uppercase;
-  color: ${style.colors.slate900};
+  color: ${props => props.theme.colors.panel[90]};
 `
 export const Nav = styled.nav`
   display: flex;

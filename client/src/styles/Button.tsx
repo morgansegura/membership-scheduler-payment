@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import * as style from 'styles/config/utilities'
-import { darken, lighten, readableColor } from 'polished'
+import { rgba, darken, lighten, readableColor } from 'polished'
 
 export const Button = styled(props => props.as)`
   position: relative;
@@ -82,13 +82,13 @@ export const Button = styled(props => props.as)`
         `
       : props.size === 'md'
       ? css`
-          ${style.fontSizing('17px', '20px', 500)};
-          padding: ${style.sp['2.5']} ${style.sp['3']};
+          ${style.fontSizing('18px', '36px', 900)};
+          padding: ${style.sp['1.5']} ${style.sp['3']};
         `
       : props.size === 'lg'
       ? css`
-          ${style.fontSizing('22px', '20px', 500)};
-          padding: ${style.sp['2.5']} ${style.sp['3']};
+          ${style.fontSizing('22px', '44px', 900)};
+          padding: 0 ${style.sp['3']};
         `
       : props.size === 'xl'
       ? css`
@@ -97,7 +97,7 @@ export const Button = styled(props => props.as)`
         `
       : css`
           ${style.fontSizing('13px', '26px', 600)};
-          padding: ${style.sp['2.5']} ${style.sp['3']};
+          padding: ${style.sp['2']} ${style.sp['4']};
         `}
 
 
@@ -113,25 +113,25 @@ export const Button = styled(props => props.as)`
           )};
 
           &:hover {
-            background-color: ${darken(0.15, props.theme.button.bgcolorForm)};
+            background-color: ${darken(0.05, props.theme.button.bgcolorForm)};
             color: ${readableColor(
-              darken(0.15, props.theme.button.bgcolorForm),
+              darken(0.05, props.theme.button.bgcolorForm),
               style.colors.slate900,
               style.colors.slate100,
             )};
           }
           &:active {
-            background-color: ${darken(0.25, props.theme.button.bgcolorForm)};
+            background-color: ${darken(0.9, props.theme.button.bgcolorForm)};
             color: ${readableColor(
-              darken(0.25, props.theme.button.bgcolorForm),
+              darken(0.9, props.theme.button.bgcolorForm),
               style.colors.slate900,
               style.colors.slate100,
             )};
           }
           &:disabled {
-            background-color: ${darken(0.25, props.theme.button.bgcolorForm)};
+            background-color: ${rgba(props.theme.button.bgcolorPrimary, 0.5)};
             color: ${readableColor(
-              darken(0.25, props.theme.button.bgcolorForm),
+              rgba(props.theme.button.bgcolorForm, 0.5),
               style.colors.slate900,
               style.colors.slate100,
             )};
@@ -147,25 +147,25 @@ export const Button = styled(props => props.as)`
           )};
 
           &:hover {
-            background-color: ${lighten(0.05, props.theme.button.bgcolorPrimary)};
+            background-color: ${darken(0.05, props.theme.button.bgcolorPrimary)};
             color: ${readableColor(
-              lighten(0.15, props.theme.button.bgcolorPrimary),
+              darken(0.05, props.theme.button.bgcolorPrimary),
               style.colors.slate900,
               style.colors.slate100,
             )};
           }
           &:active {
-            background-color: ${darken(0.25, props.theme.button.bgcolorPrimary)};
+            background-color: ${darken(0.09, props.theme.button.bgcolorPrimary)};
             color: ${readableColor(
-              darken(0.25, props.theme.button.bgcolorPrimary),
+              darken(0.09, props.theme.button.bgcolorPrimary),
               style.colors.slate900,
               style.colors.slate100,
             )};
           }
           &:disabled {
-            background-color: ${darken(0.25, props.theme.button.bgcolorPrimary)};
+            background-color: ${rgba(props.theme.button.bgcolorPrimary, 0.5)};
             color: ${readableColor(
-              darken(0.25, props.theme.button.bgcolorPrimary),
+              rgba(props.theme.button.bgcolorPrimary, 0.5),
               style.colors.slate900,
               style.colors.slate100,
             )};
@@ -181,25 +181,25 @@ export const Button = styled(props => props.as)`
           )};
 
           &:hover {
-            background-color: ${darken(0.15, props.theme.button.bgcolorSecondary)};
+            background-color: ${darken(0.05, props.theme.button.bgcolorSecondary)};
             color: ${readableColor(
-              darken(0.15, props.theme.button.bgcolorSecondary),
+              darken(0.05, props.theme.button.bgcolorSecondary),
               style.colors.slate900,
               style.colors.slate100,
             )};
           }
           &:active {
-            background-color: ${darken(0.25, props.theme.button.bgcolorSecondary)};
+            background-color: ${darken(0.9, props.theme.button.bgcolorSecondary)};
             color: ${readableColor(
-              darken(0.25, props.theme.button.bgcolorSecondary),
+              darken(0.9, props.theme.button.bgcolorSecondary),
               style.colors.slate900,
               style.colors.slate100,
             )};
           }
           &:disabled {
-            background-color: ${darken(0.25, props.theme.button.bgcolorSecondary)};
+            background-color: ${rgba(props.theme.button.bgcolorSecondary, 0.5)};
             color: ${readableColor(
-              darken(0.25, props.theme.button.bgcolorSecondary),
+              rgba(props.theme.button.bgcolorSecondary, 0.5),
               style.colors.slate900,
               style.colors.slate100,
             )};

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { Role } from './role.enum';
 
@@ -22,4 +22,10 @@ export class User {
 
   @Column({ default: 'member' })
   role: Role;
+
+  // @Column({ default: null })
+  // avatar?: any;
+
+  @Column({ default: false })
+  status: boolean;
 }

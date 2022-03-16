@@ -20,8 +20,8 @@ export const authService = {
   register,
 }
 
-function signout(params: any | null) {
-  return fetchWrapper.post(`${baseUrl}/create`, params)
+function signout() {
+  return fetchWrapper.post(`${baseUrl}/signout`, {})
 }
 
 function register(params: RegisterType) {

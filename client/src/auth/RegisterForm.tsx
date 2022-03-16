@@ -132,13 +132,13 @@ const RegisterForm: React.FC<IProps> = () => {
             label="Password Confirm"
             register={register}
             required
-            autoComplete="off"
+            autoComplete="new-password"
             watch={watch}
           />
           {errors.passwordConfirm?.message && <p>{errors.passwordConfirm?.message}</p>}
         </ErrorList>
         <ButtonContainer>
-          <Button themed="form" size="lg" radius="circle" type="submit">
+          <Button themed="form" size="md" radius="circle" type="submit">
             Sign Up
           </Button>
         </ButtonContainer>

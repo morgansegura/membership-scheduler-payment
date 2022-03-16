@@ -35,7 +35,7 @@ export const colors = {
   gray600: '#4b5563',
   gray700: '#374151',
   gray800: '#1f2937',
-  gray900: '#111827',
+  gray900: '#181d27',
 
   zinc50: '#fafafa',
   zinc100: '#f4f4f5',
@@ -367,7 +367,19 @@ export const shadow = {
   none: css`border-radius: filter: drop-shadow(0 0 #0000)`,
 }
 
-export const grid = (rows: string = '12', size: string = '1fr', gutter: string, rowGap: string) => {
+type GridProps = {
+  rows?: string
+  size?: string
+  gutter?: string
+  rowGap?: string
+}
+
+export const grid: GridProps = (
+  rows: string = '12',
+  size: string = '1fr',
+  gutter: string,
+  rowGap: string,
+) => {
   return css`
     display: grid;
     grid-template-columns: repeat(${rows}, ${size});

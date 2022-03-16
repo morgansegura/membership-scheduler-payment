@@ -1,24 +1,26 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 
 // [Hooks]
 import { useStorage } from 'hooks'
+import { userService } from 'api'
 
 type Props = {}
 
 const AuthProvider: React.FC<Props> = ({ children }) => {
-    const router = useRouter()
-    const { getStorage } = useStorage()
-    const [user, setUser] = React.useState(Boolean(getStorage('jwt')))
-    const [userInfo, setUserInfo] = React.useState({})
+  const { setStorage } = useStorage()
 
-    React.useEffect(() => {
-        if (!user) {
-            router.push('/login')
-        }
-    }, [])
+  const getUser = () => {
+    // if (user) {
+    //   userService.me().then(() => {
+    //   })
+    // }
+  }
 
-    return <>{children}</>
+  React.useEffect(() => {
+    getUser()
+  }, [])
+
+  return <>{children}</>
 }
 
 export default AuthProvider

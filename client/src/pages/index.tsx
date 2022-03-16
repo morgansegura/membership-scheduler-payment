@@ -8,8 +8,7 @@ type Props = {
   user: any
 }
 
-const Home: React.FC<Props> = ({ user }) => {
-  console.log(user)
+const Home: React.FC<Props> = () => {
   return (
     <>
       <HeadContent

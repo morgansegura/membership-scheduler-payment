@@ -22,8 +22,8 @@ const schema = yup.object().shape({
 interface IProps {}
 export const LoginForm: React.FC<IProps> = (props: IProps) => {
   const router = useRouter()
-  const { setStorage } = useStorage()
-  const [user, setUser] = React.useState(false)
+  const { getStorage, setStorage } = useStorage()
+  const [user, setUser] = React.useState(Boolean(getStorage('user')))
 
   const {
     register,
@@ -41,8 +41,8 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
       .then(res => {
         const { jwt, user } = res
         if (jwt) {
-          setStorage('jwt', jwt)
           setUser(true)
+          setStorage('user', 'Happy little trees')
         }
         alertService.success(`👍🏽  &nbsp Welcome back, ${user.firstName}!`, {
           keepAfterRouteChange: true,
@@ -74,6 +74,7 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
             label="Email"
             register={register}
             required
+            autoComplete="new-password"
             watch={watch}
           />
           {errors.email?.message && <p>{errors.email?.message}</p>}
@@ -85,13 +86,14 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
             label="Password"
             register={register}
             required
+            autoComplete="new-password"
             watch={watch}
           />
           {errors.password?.message && <p>{errors.password?.message}</p>}
         </ErrorList>
 
         <ButtonContainer>
-          <Button themed="form" size="lg" radius="circle" type="submit">
+          <Button themed="primary" size="md" radius="circle" type="submit">
             Sign In
           </Button>
         </ButtonContainer>

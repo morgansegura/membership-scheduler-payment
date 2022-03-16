@@ -1,5 +1,6 @@
 import React from 'react'
 import { userService } from 'api'
+import { useStorage } from 'hooks'
 
 type RoleGuardProps = {
   role: string
@@ -8,47 +9,29 @@ type RoleGuardProps = {
 
 const RoleGuard: React.FC<RoleGuardProps> = ({ children, role, level }) => {
   const roleSetter = () => {
-    let roleType: string = level
     let allowedTypes: string[]
-    let message: any
-
-    console.log()
 
     switch (role) {
       case 'member':
-        allowedTypes = ['guest', 'member']
+        allowedTypes = ['member']
         break
       case 'mod':
-        allowedTypes = ['guest', 'member', 'mod']
+        allowedTypes = ['member', 'mod']
         break
       case 'admin':
-        allowedTypes = ['guest', 'member', 'mod', 'admin']
+        allowedTypes = ['member', 'mod', 'admin']
         break
       default:
         allowedTypes = ['guest']
         break
     }
 
-    message = (
-      <div>
-        <p>You have {roleType} level permissions.</p>
-      </div>
-    )
-    return { message, allowedTypes }
+    return { allowedTypes }
   }
 
-  const { message, allowedTypes } = roleSetter()
+  const { allowedTypes } = roleSetter()
 
-  return (
-    <>
-      {role && allowedTypes.includes(level) && (
-        <div>
-          {children}
-          {message}
-        </div>
-      )}
-    </>
-  )
+  return <>{level && allowedTypes.includes(level) && <>{children}</>}</>
 }
 
 type RoleGuardLayoutProps = {
@@ -56,18 +39,22 @@ type RoleGuardLayoutProps = {
   level: string
 }
 const RoleGuardLayout: React.FC<RoleGuardLayoutProps> = ({ children, level }) => {
+  const { getStorage, setStorage } = useStorage()
+  const [user, setUser] = React.useState(Boolean(getStorage('user')))
   const [role, setRole] = React.useState('guest')
 
   const getUser = () => {
-    userService.me().then((res: any) => {
-      const { role } = res
-      setRole(role)
-    })
+    if (user) {
+      userService.me().then((res: any) => {
+        const { role } = res
+        setRole(role)
+      })
+    }
   }
 
   React.useEffect(() => {
     getUser()
-  }, [])
+  }, [user])
 
   return (
     <>

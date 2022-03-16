@@ -16,6 +16,8 @@ interface ActiveProps {
 }
 
 export const MenuSelector = styled.div`
+  position: relative;
+  z-index: 2;
   cursor: pointer;
   transition: opacity 0.3s ease-out;
   padding: 0;
@@ -30,21 +32,20 @@ export const MenuSelector = styled.div`
 
 export const Menu = styled.div`
   position: absolute;
-  z-index: 100;
+  z-index: 1;
   overflow: hidden;
-  top: ${style.sp[10]};
-  right: ${style.sp[8]};
+  top: 38px;
+  right: ${style.sp[6]};
   display: flex;
   flex-direction: column;
   ${style.shadow.lg}
   ${style.radius.lg}
-	background-color: ${style.colors.white};
+	background-color: ${props => props.theme.menu.bgcolor};
   transform-origin: 0 100%;
   min-width: 200px;
-  /* padding-top: ${style.sp['1.5']}; */
-  padding-bottom: ${style.sp['1.5']};
-  border-top: 2px solid ${style.colors.slate50};
-  color: ${style.colors.slate800};
+  padding-bottom: ${style.sp['2']};
+  border-top: 1px solid ${props => props.theme.colors.panel[20]};
+  color: ${props => props.theme.colors.panel[80]};
   letter-spacing: normal;
   transition: opacity 0.3s ease-out;
 
@@ -56,32 +57,28 @@ export const Menu = styled.div`
       : css`
           display: none;
         `};
+
+  a {
+    display: flex;
+  }
 `
 
-export const NavItem = styled.div`
+export const ProfileNavItem = styled.div`
   flex: 1 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: ${style.sp[1]};
-  padding-right: ${style.sp[3]};
-  padding-bottom: ${style.sp[1]};
-  padding-left: ${style.sp[3]};
-  color: ${style.colors.slate800};
-  ${style.fontSizing('14px', '28px')}
+  padding: ${style.sp[1.5]} ${style.sp[3]};
+  ${style.fontSizing('14px', '28px', 900)}
   font-weight: 400;
   cursor: pointer;
   border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
   transition: background-color 0.3s ease-out;
-
-  /* &:not(:first-of-type) { */
-  border-top: 1px solid ${rgba(style.colors.slate200, 0.4)};
-  color: ${style.colors.slate600};
-  /* } */
+  border-bottom: 1px solid ${props => props.theme.menu.bordercolor};
+  color: ${props => props.theme.colors.panel[80]};
 
   &:hover {
-    background-color: ${rgba(style.colors.slate100, 0.6)};
+    background-color: ${props => rgba(props.theme.colors.panel[10], 0.6)};
   }
 
   ${(props: ActiveProps) => props.active && css``}
@@ -98,7 +95,7 @@ export const Avatar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.button.bgcolorForm};
+  background-color: ${props => props.theme.colors.primary};
   color: ${style.colors.white};
   ${style.fontSizing('20px', '40px')}
   font-weight: 900;
@@ -108,7 +105,7 @@ export const Avatar = styled.div`
   ${(props: AvatarProps) =>
     props.focus
       ? css`
-          outline: 4px solid ${rgba(style.colors.violet300, 0.6)};
+          outline: 4px solid ${props => rgba(props.theme.colors.panel[30], 0.6)};
         `
       : css`
           outline: 4px solid transparent;
@@ -119,12 +116,11 @@ export const Tab = styled.div`
   display: flex;
   align-items: center;
   padding: ${style.sp[2.5]} ${style.sp[4]} ${style.sp[1.5]} ${style.sp[4]};
-  ${style.fontSizing('13px', '26px')}
+  ${style.fontSizing('14px', '28px', 700)}
   text-transform: uppercase;
-  font-weight: 600;
-  color: ${style.colors.slate500};
-  background-color: ${rgba(style.colors.slate200, 0.4)};
-  border-bottom: 1px solid ${rgba(style.colors.slate300, 0.1)};
+  color: ${props => props.theme.colors.panel[60]};
+  background-color: ${props => rgba(props.theme.colors.panel[20], 0.4)};
+  border-bottom: 1px solid ${props => rgba(props.theme.colors.panel[20], 0.6)};
 `
 
 export const Badge = styled.strong`

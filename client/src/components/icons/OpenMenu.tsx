@@ -1,10 +1,12 @@
 import React from 'react'
 import { MenuTile, Tile } from 'styles/Icons'
 
-type Props = {}
-const OpenMenu: React.FC<Props> = ({}) => {
+type Props = {
+  open?: boolean
+}
+const OpenMenu: React.FC<Props> = ({ open }) => {
   return (
-    <MenuTile>
+    <MenuTile open={open}>
       <Tile />
       <Tile />
       <Tile />
