@@ -4,25 +4,32 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { configValidationSchema } from './config.schema';
 import { TasksModule } from './tasks/tasks.module';
 
 @Module({
     imports: [
         ConfigModule.forRoot({
             isGlobal: true,
-            envFilePath: ['.env'],
+            envFilePath: [`.env.stage.${process.env.STAGE}`],
+            validationSchema: configValidationSchema,
         }),
-        TypeOrmModule.forRoot({
-            type: 'postgres',
-            host: process.env.DB_HOST,
-            port: parseInt(process.env.DB_PORT, 10) || 5432,
-            database: process.env.DB_NAME,
-            username: process.env.DB_USERNAME,
-            password: process.env.DB_PASSWORD,
-            // entities: [User],
-            autoLoadEntities: true,
-            synchronize: true,
+        TypeOrmModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: async (configService: ConfigService) => {
+                return {
+                    type: 'postgres',
+                    autoLoadEntities: true,
+                    synchronize: true,
+                    host: configService.get('DB_HOST'),
+                    port: parseInt(configService.get('DB_PORT'), 10) || 5432,
+                    username: configService.get('DB_USERNAME'),
+                    password: configService.get('DB_PASSWORD'),
+                    database: configService.get('DB_DATABASE'),
+                };
+            },
         }),
         AuthModule,
         CloudinaryModule,
