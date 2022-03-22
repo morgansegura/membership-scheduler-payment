@@ -24,7 +24,7 @@ export const SigninForm: React.FC<IProps> = (props: IProps) => {
   const router = useRouter()
   const { getStorage, setStorage } = useStorage()
   const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
-  const { base } = paths
+  const { base, auth } = paths
 
   const {
     register,
@@ -103,7 +103,7 @@ export const SigninForm: React.FC<IProps> = (props: IProps) => {
       </AuthForm>
       <ToggleForm>
         <p>Need an account?</p>
-        <Link href="/register">
+        <Link href={auth.register.path}>
           <a>
             <Button themed="default">Signup Here</Button>
           </a>

@@ -13,6 +13,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './roles.guard';
 import { UsersService } from '../users/users.service';
 import { LocalStrategy } from './local.strategy';
+import { FilesModule } from 'src/files/files.module';
 
 @Module({
     imports: [
@@ -28,6 +29,7 @@ import { LocalStrategy } from './local.strategy';
             }),
         }),
         TypeOrmModule.forFeature([UsersRepository]),
+        FilesModule,
     ],
     controllers: [AuthController],
     providers: [
@@ -35,6 +37,7 @@ import { LocalStrategy } from './local.strategy';
         JwtStrategy,
         LocalStrategy,
         UsersService,
+        FilesModule,
         { provide: APP_GUARD, useClass: RolesGuard },
     ],
     exports: [JwtStrategy, PassportModule],

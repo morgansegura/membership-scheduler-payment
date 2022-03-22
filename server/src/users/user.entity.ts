@@ -12,6 +12,7 @@ import { Expose } from 'class-transformer';
 import { Address } from './address.entity';
 import { Profile } from './profile.entity';
 import { Post } from 'src/posts/post.entity';
+import { PublicFile } from 'src/files/public-file.entity';
 
 @Entity()
 export class User {
@@ -28,23 +29,35 @@ export class User {
     @OneToOne(() => Address, {
         eager: true,
         cascade: true,
+        nullable: true,
     })
     @JoinColumn()
-    public address: Address;
+    public address?: Address;
 
     @OneToOne(() => Profile, {
         eager: true,
         cascade: true,
+        nullable: true,
     })
     @JoinColumn()
     public profile: Profile;
 
+    @JoinColumn()
+    @OneToOne(() => PublicFile, {
+        eager: true,
+        nullable: true,
+    })
+    public avatar?: PublicFile;
+
     @Column({ type: 'simple-array', default: 'MEMBER' })
     public role: Role[];
 
-    @OneToMany(() => Task, (task) => task.user, { eager: true })
+    @OneToMany(() => Task, (task) => task.user, { eager: true, nullable: true })
     public tasks: Task[];
 
-    @OneToMany(() => Post, (post) => post.author, { eager: true })
+    @OneToMany(() => Post, (post) => post.author, {
+        eager: true,
+        nullable: true,
+    })
     public posts: Post[];
 }
