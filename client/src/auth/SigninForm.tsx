@@ -41,6 +41,7 @@ export const SigninForm: React.FC<IProps> = (props: IProps) => {
       })
       .then(res => {
         const { accessToken } = res
+        console.log({ res })
         if (accessToken) {
           setUser(true)
           setStorage('accessToken', accessToken)
@@ -49,11 +50,11 @@ export const SigninForm: React.FC<IProps> = (props: IProps) => {
           keepAfterRouteChange: true,
         })
       })
-      .catch(e => {
+      .catch(error => {
         alertService.error('🙀  &nbsp Something went wrong!', {
           keepAfterRouteChange: true,
         })
-        console.log(e)
+        console.log(error)
       })
   }
 

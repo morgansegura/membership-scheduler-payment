@@ -48,7 +48,7 @@ export class AuthService {
 
     async getAuthenticatedUser(username: string, password: string) {
         try {
-            const user = await this.usersService.getUserBy({ username });
+            const user = await this.usersService.getUserByUsername(username);
             await this.verifyPassword(password, user.password);
             user.password = undefined;
             return user;

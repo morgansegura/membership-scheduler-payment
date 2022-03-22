@@ -11,7 +11,6 @@ import {
     UseInterceptors,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { AuthService } from './auth.service';
 import { LocalAuthenticationGuard } from './local-auth.guard';
 import { RequestWithUser } from './request-with-user.interface';
@@ -19,10 +18,12 @@ import { Response } from 'express';
 import JwtAuthenticationGuard from './jwt-auth.guard';
 import { RegisterDto } from './dto/register.dto';
 import { User } from 'src/users/user.entity';
+import { Logger } from '@nestjs/common';
 
 @Controller('auth')
 @UseInterceptors(ClassSerializerInterceptor)
 export class AuthController {
+    private logger = new Logger('AuthController');
     constructor(
         private authService: AuthService,
         private jwtService: JwtService,
@@ -30,6 +31,11 @@ export class AuthController {
 
     @Post('/register')
     async register(@Body() registerDto: RegisterDto): Promise<User> {
+        this.logger.verbose(
+            `Register new user '${User}'. Options: ${JSON.stringify(
+                RegisterDto,
+            )}`,
+        );
         return this.authService.register(registerDto);
     }
 
@@ -41,7 +47,14 @@ export class AuthController {
         const cookie = this.authService.getCookieWithJwtToken(user.username);
         response.setHeader('Set-Cookie', cookie);
         user.password = undefined;
-        return response.send(user);
+
+        this.logger.verbose(
+            `Request user '${JSON.stringify(
+                user,
+            )}'. Get and Set Cookie: ${JSON.stringify(cookie)}`,
+        );
+        response.send(user);
+        return user;
     }
 
     @UseGuards(JwtAuthenticationGuard)
