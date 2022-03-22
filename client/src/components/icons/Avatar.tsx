@@ -14,7 +14,7 @@ type AvatarProps = {
 
 const Avatar: React.FC<AvatarProps> = ({ size, type, withOptions }) => {
   const { getStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('user')))
+  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
   const [userInitial, setUserInitial] = React.useState('W')
   const [userImage, setUserImage] = React.useState('')
   const [selectedImage, setSelectedImage] = React.useState('')
@@ -25,8 +25,8 @@ const Avatar: React.FC<AvatarProps> = ({ size, type, withOptions }) => {
   const getUser = () => {
     if (user) {
       userService.me().then((res: any) => {
-        const { firstName } = res
-        const initial = userInitials(`${firstName}`)
+        const { username } = res
+        const initial = userInitials(`${username}`)
         setUserInitial(initial)
       })
     }

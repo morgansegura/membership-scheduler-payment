@@ -7,6 +7,8 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './config.schema';
 import { TasksModule } from './tasks/tasks.module';
+import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
     imports: [
@@ -34,14 +36,9 @@ import { TasksModule } from './tasks/tasks.module';
         AuthModule,
         CloudinaryModule,
         TasksModule,
+        UsersModule,
     ],
     controllers: [AppController],
     providers: [AppService],
 })
 export class AppModule {}
-
-// db.createUser({
-//   user: 'morgansegura',
-//   pwd: 'S3GuRa536',
-//   roles: [{ role: 'userAdminAnyDatabase', db: 'admin' }],
-// });

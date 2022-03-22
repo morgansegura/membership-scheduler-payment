@@ -1,7 +1,7 @@
 export class RegisterDto {
-    firstName: string;
+    firstName?: string;
 
-    lastName: string;
+    lastName?: string;
 
     username: string;
 

@@ -1,12 +1,7 @@
 import React from 'react'
 import { useClickAway } from 'react-use'
-
-// [Api]
-import { userService } from 'api'
 // [Hooks]
 import { useStorage } from 'hooks'
-// [Utils]
-import { userInitials } from 'utils/misc'
 // [Components]
 import { Avatar, OpenMenu } from 'components'
 // [Styles]
@@ -18,9 +13,7 @@ type Props = {
 
 const ProfileMenu: React.FC<Props> = ({ children }) => {
   const { getStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('user')))
-  const [userName, setUserName] = React.useState('')
-  const [userInitial, setUserInitial] = React.useState('')
+  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
   const [showMenu, setShowMenu] = React.useState(false)
   const [focus, setFocus] = React.useState(false)
 

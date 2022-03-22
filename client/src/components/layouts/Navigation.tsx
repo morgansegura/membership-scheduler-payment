@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 // [Hooks]
 import { useStorage } from 'hooks'
 // [Components]
-import { ProfileMenu, RoleGuardLayout } from 'components'
+import { ProfileMenu, RoleGuardLayout, paths } from 'components'
 // [Styles]
 import { ProfileNavItem } from 'styles/ProfileMenu'
 import { alertService, authService } from 'api'
@@ -14,24 +14,21 @@ type NavLinksProps = {}
 const NavLinks: React.FC<NavLinksProps> = () => {
   const router = useRouter()
   const { getStorage, setStorage, removeStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('user')))
+  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
   const [theme, setTheme] = React.useState(getStorage('theme') || 'light')
+
+  const { auth, account, base } = paths
 
   const isActive = (route: string) => {
     return router.pathname === route
   }
 
   const signout = () => {
-    authService
-      .signout()
-      .then(() => {
-        removeStorage('user')
-        alertService.success(`👍🏽  &nbsp Catch you later!`, {
-          keepAfterRouteChange: true,
-        })
-      })
-      .catch(err => console.log(err))
-      .finally(() => router.push('/login'))
+    removeStorage('accessToken')
+    alertService.success(`👍🏽  &nbsp Catch you later!`, {
+      keepAfterRouteChange: true,
+    })
+    router.push(`${auth.signin.path}`)
   }
 
   const toggleTheme = () => {
@@ -48,41 +45,41 @@ const NavLinks: React.FC<NavLinksProps> = () => {
   return (
     <>
       <ProfileMenu>
-        <RoleGuardLayout level="guest">
+        <RoleGuardLayout level="GUEST">
           <>
-            {!isActive('/') && (
-              <Link href="/">
+            {!isActive(`${base.landing.path}`) && (
+              <Link href={base.landing.path}>
                 <a>
-                  <ProfileNavItem>Home</ProfileNavItem>
+                  <ProfileNavItem>{base.landing.label}</ProfileNavItem>
                 </a>
               </Link>
             )}
-            {!isActive('/login') && (
-              <Link href="/login">
+            {!isActive(`${auth.signin.path}`) && (
+              <Link href={`${auth.signin.path}`}>
                 <a>
-                  <ProfileNavItem>Login</ProfileNavItem>
+                  <ProfileNavItem>{auth.signin.label}</ProfileNavItem>
                 </a>
               </Link>
             )}
 
-            {!isActive('/register') && (
-              <Link href="/register">
+            {!isActive(`${auth.register.path}`) && (
+              <Link href={auth.register.path}>
                 <a>
-                  <ProfileNavItem>Register</ProfileNavItem>
+                  <ProfileNavItem>{auth.register.label}</ProfileNavItem>
                 </a>
               </Link>
             )}
           </>
         </RoleGuardLayout>
-        <RoleGuardLayout level="member">
-          <Link href="/dashboard">
+        <RoleGuardLayout level="MEMBER">
+          <Link href={account.dashboard.path}>
             <a>
-              <ProfileNavItem>Dashboard</ProfileNavItem>
+              <ProfileNavItem>{account.dashboard.label}</ProfileNavItem>
             </a>
           </Link>
-          <Link href="/profile">
+          <Link href={account.profile.path}>
             <a>
-              <ProfileNavItem>Profile</ProfileNavItem>
+              <ProfileNavItem>{account.profile.label}</ProfileNavItem>
             </a>
           </Link>
         </RoleGuardLayout>

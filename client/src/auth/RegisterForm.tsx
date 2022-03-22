@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 // [Auth]
 import { alertService, authService } from 'api'
 // [Components]
-import { Button, TextInput } from 'components/inputs'
+import { Button, TextInput, paths } from 'components'
 // [Styles]
 import { AuthForm, ErrorList, FormTitle, ToggleForm } from 'styles/Form'
 import { ButtonContainer } from 'styles/Button'
@@ -15,6 +15,7 @@ import { ButtonContainer } from 'styles/Button'
 const schema = yup.object().shape({
   firstName: yup.string().required('Your first name is required'),
   lastName: yup.string().required('Your last name is required'),
+  username: yup.string().max(20).required(),
   email: yup.string().email().required(),
   password: yup.string().min(8).max(32).required(),
   passwordConfirm: yup
@@ -27,6 +28,7 @@ interface IProps {}
 const RegisterForm: React.FC<IProps> = () => {
   const router = useRouter()
   const [registered, setRegistered] = React.useState(false)
+  const { auth } = paths
 
   const {
     register,
@@ -40,31 +42,28 @@ const RegisterForm: React.FC<IProps> = () => {
       .register({
         firstName: watch('firstName'),
         lastName: watch('lastName'),
+        username: watch('username'),
         email: watch('email'),
         password: watch('password'),
         passwordConfirm: watch('passwordConfirm'),
       })
-      .then(res => {
-        setRegistered(true)
-        const { message } = res
-        alertService.error(`👍🏽  &nbsp ${message}`, {
-          keepAfterRouteChange: true,
-        })
-      })
-      .catch(err => {
-        console.log({ err })
-        const {
-          data: { message },
-        } = err
-        alertService.error(`🙀  &nbsp ${message}`, {
-          keepAfterRouteChange: true,
-        })
+      .then(() => {
+        try {
+          setRegistered(true)
+          alertService.error(`👍🏽  &nbsp Successful!`, {
+            keepAfterRouteChange: true,
+          })
+        } catch (error) {
+          alertService.error(`🙀  &nbsp Something went wrong!`, {
+            keepAfterRouteChange: true,
+          })
+        }
       })
   }
 
   React.useEffect(() => {
     if (registered) {
-      router.push('/login')
+      router.push(auth.signin.path)
       alertService.error(`📩  &nbsp Please check your email to confirm registration.`, {
         keepAfterRouteChange: true,
       })
@@ -100,6 +99,18 @@ const RegisterForm: React.FC<IProps> = () => {
             watch={watch}
           />
           {errors.lastName?.message && <p>{errors.lastName?.message}</p>}
+        </ErrorList>
+        <ErrorList className={errors.username?.message ? `error` : ``}>
+          <TextInput
+            type="username"
+            name="username"
+            label="Username"
+            register={register}
+            required
+            autoComplete="new-password"
+            watch={watch}
+          />
+          {errors.username?.message && <p>{errors.username?.message}</p>}
         </ErrorList>
         <ErrorList className={errors.email?.message ? `error` : ``}>
           <TextInput
@@ -146,7 +157,7 @@ const RegisterForm: React.FC<IProps> = () => {
 
       <ToggleForm>
         <p>Already a member?</p>
-        <Link href="/login">
+        <Link href={auth.signin.path}>
           <a>
             <Button size="xs">Login Here</Button>
           </a>

@@ -1,9 +1,10 @@
 import { fetchWrapper } from './fetchWrapper'
 
-const baseUrl = 'admin/user'
+const baseUrl = 'auth/user'
 interface IUser {
   firstName?: string
   lastName?: string
+  username?: string
   email?: string
   avatar?: string
   role?: string

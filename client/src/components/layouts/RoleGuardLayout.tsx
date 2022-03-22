@@ -40,8 +40,8 @@ type RoleGuardLayoutProps = {
 }
 const RoleGuardLayout: React.FC<RoleGuardLayoutProps> = ({ children, level }) => {
   const { getStorage, setStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('user')))
-  const [role, setRole] = React.useState('guest')
+  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
+  const [role, setRole] = React.useState('GUEST')
 
   const getUser = () => {
     if (user) {

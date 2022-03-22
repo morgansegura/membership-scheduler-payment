@@ -9,21 +9,22 @@ import { alertService, authService } from 'api'
 // [Hooks]
 import { useStorage } from 'hooks'
 // [Components]
-import { Button, TextInput } from 'components/inputs'
+import { Button, TextInput, paths } from 'components'
 // [Styles]
 import { AuthForm, ErrorList, FormTitle, ToggleForm } from 'styles/Form'
 import { ButtonContainer } from 'styles/Button'
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
+  username: yup.string().min(4).max(20).required(),
   password: yup.string().min(8).max(32).required(),
 })
 
 interface IProps {}
-export const LoginForm: React.FC<IProps> = (props: IProps) => {
+export const SigninForm: React.FC<IProps> = (props: IProps) => {
   const router = useRouter()
   const { getStorage, setStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('user')))
+  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
+  const { base } = paths
 
   const {
     register,
@@ -35,16 +36,16 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
   const onSubmit = () => {
     authService
       .signin({
-        email: watch('email'),
+        username: watch('username'),
         password: watch('password'),
       })
       .then(res => {
-        const { jwt, user } = res
-        if (jwt) {
+        const { accessToken } = res
+        if (accessToken) {
           setUser(true)
-          setStorage('user', 'Happy little trees')
+          setStorage('accessToken', accessToken)
         }
-        alertService.success(`👍🏽  &nbsp Welcome back, ${user.firstName}!`, {
+        alertService.success(`👍🏽  &nbsp Welcome back!`, {
           keepAfterRouteChange: true,
         })
       })
@@ -52,12 +53,13 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
         alertService.error('🙀  &nbsp Something went wrong!', {
           keepAfterRouteChange: true,
         })
+        console.log(e)
       })
   }
 
   React.useEffect(() => {
     if (user) {
-      router.push('/')
+      router.push(base.landing.path)
     }
   }, [user])
 
@@ -67,17 +69,17 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
         <FormTitle>
           <h3>Sign into your account</h3>
         </FormTitle>
-        <ErrorList className={errors.email?.message ? `error` : ``}>
+        <ErrorList className={errors.username?.message ? `error` : ``}>
           <TextInput
-            type="email"
-            name="email"
-            label="Email"
+            type="username"
+            name="username"
+            label="Username"
             register={register}
             required
             autoComplete="new-password"
             watch={watch}
           />
-          {errors.email?.message && <p>{errors.email?.message}</p>}
+          {errors.username?.message && <p>{errors.username?.message}</p>}
         </ErrorList>
         <ErrorList className={errors.password?.message ? `error` : ``}>
           <TextInput
@@ -110,4 +112,4 @@ export const LoginForm: React.FC<IProps> = (props: IProps) => {
   )
 }
 
-export default LoginForm
+export default SigninForm

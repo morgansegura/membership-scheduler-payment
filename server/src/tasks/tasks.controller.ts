@@ -15,17 +15,21 @@ import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
 import { Task } from './task.entity';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from '../auth/user.entity';
-import { GetUser } from '../auth/get-user.decorator';
+import { User } from '../users/user.entity';
+import { GetUser } from '../users/get-user.decorator';
 import { Logger } from '@nestjs/common';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/auth/role.enum';
+import JwtAuthenticationGuard from 'src/auth/jwt-auth.guard';
 
 @Controller('admin/tasks')
-@UseGuards(AuthGuard())
+@UseGuards(JwtAuthenticationGuard)
 export class TasksController {
     private logger = new Logger('TasksController');
     constructor(private tasksService: TasksService) {}
 
     @Get()
+    @Roles(Role.MEMBER, Role.MODERATOR, Role.ADMIN, Role.SUPER)
     getTasks(
         @Query() filterDto: GetTasksFilterDto,
         @GetUser() user: User,

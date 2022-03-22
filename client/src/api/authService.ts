@@ -1,15 +1,16 @@
 import { fetchWrapper } from './fetchWrapper'
 
-const baseUrl = 'admin'
+const baseUrl = 'auth'
 
 type SigninType = {
-  email: string
+  username: string
   password: string
 }
 type RegisterType = {
   firstName: string
   lastName: string
   email: string
+  username: string
   password: string
   passwordConfirm: string
 }

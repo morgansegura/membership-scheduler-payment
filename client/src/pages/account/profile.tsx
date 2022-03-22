@@ -8,7 +8,7 @@ import { UpdateUserForm } from 'auth'
 // [Hooks]
 import { useStorage } from 'hooks'
 // [Comonents]
-import { Base as Layout, HeadContent, RoleGuardLayout } from 'components/layouts'
+import { Base as Layout, HeadContent, RoleGuardLayout, paths } from 'components'
 // [Utils]
 import { siteMetadata } from 'utils'
 
@@ -23,12 +23,13 @@ type AccountPageProps = {}
 const AccountPage: React.FC<AccountPageProps> = () => {
   const router = useRouter()
   const { getStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('jwt')))
+  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
   const [userInfo, setUserInfo] = React.useState([])
+  const { base } = paths
 
   React.useEffect(() => {
     if (!user) {
-      router.push('/login')
+      router.push(base.landing.path)
     }
   }, [user])
 
