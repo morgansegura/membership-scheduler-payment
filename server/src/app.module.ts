@@ -7,8 +7,11 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './config.schema';
 import { TasksModule } from './tasks/tasks.module';
-import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
+import { ExceptionsLoggerFilter } from 'utils/exceptions-logger.filter';
+import { APP_FILTER } from '@nestjs/core';
+import { PostsModule } from './posts/posts.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
     imports: [
@@ -37,8 +40,16 @@ import { UsersModule } from './users/users.module';
         CloudinaryModule,
         TasksModule,
         UsersModule,
+        PostsModule,
+        CategoriesModule,
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [
+        AppService,
+        {
+            provide: APP_FILTER,
+            useClass: ExceptionsLoggerFilter,
+        },
+    ],
 })
 export class AppModule {}

@@ -1,5 +1,7 @@
 import {
     ConflictException,
+    HttpException,
+    HttpStatus,
     InternalServerErrorException,
 } from '@nestjs/common';
 import { EntityRepository, Repository } from 'typeorm';
@@ -31,5 +33,16 @@ export class UsersRepository extends Repository<User> {
                 throw new InternalServerErrorException();
             }
         }
+    }
+
+    async getUserBy(args: any) {
+        const user = await this.findOne(args);
+        if (user) {
+            return user;
+        }
+        throw new HttpException(
+            'User with these credntials does not exist',
+            HttpStatus.NOT_FOUND,
+        );
     }
 }

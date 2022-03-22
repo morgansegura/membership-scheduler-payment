@@ -8,15 +8,4 @@ export class UsersService {
         @InjectRepository(UsersRepository)
         private usersRepository: UsersRepository,
     ) {}
-
-    async getUserByUsername(username: string) {
-        const user = await this.usersRepository.findOne({ username });
-        if (user) {
-            return user;
-        }
-        // throw new HttpException(
-        //     'User with these credntials does not exist',
-        //     HttpStatus.NOT_FOUND,
-        // );
-    }
 }

@@ -1,8 +1,11 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import {
+    ClassSerializerInterceptor,
+    Logger,
+    ValidationPipe,
+} from '@nestjs/common';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
-import { TransformInterceptor } from './transform.interceptor';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
@@ -10,9 +13,14 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
     app.useGlobalPipes(new ValidationPipe());
-    app.useGlobalInterceptors(new TransformInterceptor());
+    app.useGlobalInterceptors(
+        new ClassSerializerInterceptor(app.get(Reflector)),
+    );
+    // [Pass Cookies]
     app.use(cookieParser());
+    // [Prefix]
     app.setGlobalPrefix('api');
+    // [Cors]
     app.enableCors({
         origin: [
             'http://localhost:3000',
@@ -30,7 +38,7 @@ async function bootstrap() {
         .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, document);
-
+    // [Port]
     const port = 3001;
     await app.listen(port);
     logger.log(`Application listening on port ${port}`);

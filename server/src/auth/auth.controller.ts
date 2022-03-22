@@ -1,14 +1,12 @@
 import {
     Body,
-    ClassSerializerInterceptor,
     Controller,
-    Get,
     HttpCode,
     Post,
     Req,
     Res,
+    SerializeOptions,
     UseGuards,
-    UseInterceptors,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
@@ -21,7 +19,9 @@ import { User } from 'src/users/user.entity';
 import { Logger } from '@nestjs/common';
 
 @Controller('auth')
-@UseInterceptors(ClassSerializerInterceptor)
+@SerializeOptions({
+    strategy: 'excludeAll',
+})
 export class AuthController {
     private logger = new Logger('AuthController');
     constructor(
@@ -42,18 +42,17 @@ export class AuthController {
     @HttpCode(200)
     @UseGuards(LocalAuthenticationGuard)
     @Post('/signin')
-    async siginin(@Req() request: RequestWithUser, @Res() response: Response) {
+    async siginin(@Req() request: RequestWithUser): Promise<User> {
         const { user } = request;
         const cookie = this.authService.getCookieWithJwtToken(user.username);
-        response.setHeader('Set-Cookie', cookie);
+        request.res.setHeader('Set-Cookie', cookie);
         user.password = undefined;
-
         this.logger.verbose(
             `Request user '${JSON.stringify(
                 user,
             )}'. Get and Set Cookie: ${JSON.stringify(cookie)}`,
         );
-        response.send(user);
+        request.res.send(user);
         return user;
     }
 
