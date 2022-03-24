@@ -1,5 +1,5 @@
 import React from 'react'
-import { userService } from 'api'
+import { authService } from 'api'
 import { useStorage } from 'hooks'
 
 type RoleGuardProps = {
@@ -28,7 +28,6 @@ const RoleGuard: React.FC<RoleGuardProps> = ({ children, role, level }) => {
 
     return { allowedTypes }
   }
-
   const { allowedTypes } = roleSetter()
 
   return <>{level && allowedTypes.includes(level) && <>{children}</>}</>
@@ -40,14 +39,14 @@ type RoleGuardLayoutProps = {
 }
 const RoleGuardLayout: React.FC<RoleGuardLayoutProps> = ({ children, level }) => {
   const { getStorage, setStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
-  const [role, setRole] = React.useState('GUEST')
+  const [user, setUser] = React.useState(Boolean(getStorage('user')))
+  const [userRole, setUserRole] = React.useState('guest')
 
   const getUser = () => {
     if (user) {
-      userService.me().then((res: any) => {
+      authService.authUser().then((res: any) => {
         const { role } = res
-        setRole(role)
+        setUserRole(role[0]?.toLowerCase())
       })
     }
   }
@@ -58,7 +57,7 @@ const RoleGuardLayout: React.FC<RoleGuardLayoutProps> = ({ children, level }) =>
 
   return (
     <>
-      <RoleGuard role={role} level={level}>
+      <RoleGuard role={userRole} level={level}>
         {children}
       </RoleGuard>
     </>

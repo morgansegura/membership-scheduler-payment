@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 // [Auth]
-import { alertService, userService } from 'api'
+import { alertService, authService, usersService } from 'api'
 // [Hooks]
 import { useStorage } from 'hooks'
 // [Components]
@@ -34,7 +34,7 @@ export const UpdateUserForm: React.FC<IProps> = ({ data }) => {
   } = useForm({ mode: 'onBlur' })
 
   const updateUser = (data: any) => {
-    return userService.update({
+    return usersService.update({
       firstName: watch('firstName'),
       lastName: watch('lastName'),
       email: watch('email'),
@@ -49,7 +49,7 @@ export const UpdateUserForm: React.FC<IProps> = ({ data }) => {
 
   React.useEffect(() => {
     if (data) {
-      userService.me().then((user: any) => {
+      authService.authUser().then((user: any) => {
         const fields = ['firstName', 'lastName', 'email']
         fields.forEach(field => setValue(field, user[field]))
         console.log(user)

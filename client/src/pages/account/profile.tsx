@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 // [Api]
-import { userService } from 'api'
+import { authService } from 'api'
 // [Auth]
 import { UpdateUserForm } from 'auth'
 // [Hooks]
@@ -23,7 +23,7 @@ type AccountPageProps = {}
 const AccountPage: React.FC<AccountPageProps> = () => {
   const router = useRouter()
   const { getStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
+  const [user, setUser] = React.useState(Boolean(getStorage('user')))
   const [userInfo, setUserInfo] = React.useState([])
   const { base } = paths
 
@@ -35,7 +35,7 @@ const AccountPage: React.FC<AccountPageProps> = () => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      userService.me().then(res => {
+      authService.authUser().then(res => {
         setUserInfo(res)
       })
     }

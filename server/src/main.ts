@@ -3,11 +3,10 @@ import {
     Logger,
     ValidationPipe,
 } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { ExcludeNullInterceptor } from 'utils/exclude-null.interceptor';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'aws-sdk';
 
@@ -16,7 +15,9 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
     app.useGlobalPipes(new ValidationPipe());
-    app.useGlobalInterceptors(new ExcludeNullInterceptor());
+    app.useGlobalInterceptors(
+        new ClassSerializerInterceptor(app.get(Reflector)),
+    );
     // [Pass Cookies]
     app.use(cookieParser());
     // [Prefix]

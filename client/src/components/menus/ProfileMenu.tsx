@@ -13,7 +13,7 @@ type Props = {
 
 const ProfileMenu: React.FC<Props> = ({ children }) => {
   const { getStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
+  const [user, setUser] = React.useState(Boolean(getStorage('user')))
   const [showMenu, setShowMenu] = React.useState(false)
   const [focus, setFocus] = React.useState(false)
 
@@ -47,7 +47,14 @@ const ProfileMenu: React.FC<Props> = ({ children }) => {
   return (
     <div ref={profileMenuRef}>
       <MenuSelector onClick={toggleMenu}>
-        {user ? <Avatar size="sm" /> : <OpenMenu open={showMenu} />}
+        {user ? (
+          <>
+            <OpenMenu open={showMenu} />
+            <Avatar size="sm" />
+          </>
+        ) : (
+          <OpenMenu open={showMenu} />
+        )}
       </MenuSelector>
       <Menu isVisible={showMenu}>
         <Tab></Tab>

@@ -11,6 +11,11 @@ const userInitials = (name: string) => {
     .split(' ')
     .map(n => n[0])
     .join(' ')
+    .toUpperCase()
 }
 
-export { formatDate, userInitials }
+const emptyObject = (obj: {}) => {
+  return Object.keys(obj).length === 0
+}
+
+export { formatDate, userInitials, emptyObject }

@@ -14,6 +14,7 @@ import { RolesGuard } from './roles.guard';
 import { UsersService } from '../users/users.service';
 import { LocalStrategy } from './local.strategy';
 import { FilesModule } from 'src/files/files.module';
+import { PrivateFilesModule } from 'src/privateFiles/privateFiles.module';
 
 @Module({
     imports: [
@@ -30,6 +31,7 @@ import { FilesModule } from 'src/files/files.module';
         }),
         TypeOrmModule.forFeature([UsersRepository]),
         FilesModule,
+        PrivateFilesModule,
     ],
     controllers: [AuthController],
     providers: [
@@ -37,7 +39,7 @@ import { FilesModule } from 'src/files/files.module';
         JwtStrategy,
         LocalStrategy,
         UsersService,
-        FilesModule,
+        PrivateFilesModule,
         { provide: APP_GUARD, useClass: RolesGuard },
     ],
     exports: [JwtStrategy, PassportModule],

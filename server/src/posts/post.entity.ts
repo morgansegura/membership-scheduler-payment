@@ -23,7 +23,7 @@ export class Post {
     @Column({ nullable: true })
     public category?: string;
 
-    @ManyToOne(() => User, (author: User) => author.posts)
+    @ManyToOne(() => User, (author: User) => author.posts, { eager: false })
     public author: User;
 
     @ManyToMany(() => Category)

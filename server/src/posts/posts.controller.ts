@@ -1,6 +1,6 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
-import { RequestWithUser } from 'src/auth/request-with-user.interface';
-import { CreatePostDto } from './dto/create-post.dto';
+import { Body, Controller, Get, Post, Query, Req } from '@nestjs/common';
+import { RequestWithUser } from 'src/auth/requestWithUser.interface';
+import { CreatePostDto } from './dto/createPost.dto';
 import { PostsService } from './posts.service';
 
 @Controller('posts')

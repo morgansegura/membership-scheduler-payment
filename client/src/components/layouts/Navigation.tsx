@@ -14,7 +14,7 @@ type NavLinksProps = {}
 const NavLinks: React.FC<NavLinksProps> = () => {
   const router = useRouter()
   const { getStorage, setStorage, removeStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
+  const [user, setUser] = React.useState(Boolean(getStorage('user')))
   const [theme, setTheme] = React.useState(getStorage('theme') || 'light')
 
   const { auth, account, base } = paths
@@ -24,11 +24,13 @@ const NavLinks: React.FC<NavLinksProps> = () => {
   }
 
   const signout = () => {
-    removeStorage('accessToken')
+    authService.signout()
+    router.push(`${auth.signin.path}`)
+    setUser(false)
+    removeStorage('user')
     alertService.success(`👍🏽  &nbsp Catch you later!`, {
       keepAfterRouteChange: true,
     })
-    router.push(`${auth.signin.path}`)
   }
 
   const toggleTheme = () => {
@@ -45,7 +47,7 @@ const NavLinks: React.FC<NavLinksProps> = () => {
   return (
     <>
       <ProfileMenu>
-        <RoleGuardLayout level="GUEST">
+        <RoleGuardLayout level="guest">
           <>
             {!isActive(`${base.landing.path}`) && (
               <Link href={base.landing.path}>
@@ -71,7 +73,7 @@ const NavLinks: React.FC<NavLinksProps> = () => {
             )}
           </>
         </RoleGuardLayout>
-        <RoleGuardLayout level="MEMBER">
+        <RoleGuardLayout level="member">
           <Link href={account.dashboard.path}>
             <a>
               <ProfileNavItem>{account.dashboard.label}</ProfileNavItem>
@@ -86,7 +88,7 @@ const NavLinks: React.FC<NavLinksProps> = () => {
         <ProfileNavItem onClick={toggleTheme}>
           {theme === 'light' ? 'Dark' : 'Light'} Mode
         </ProfileNavItem>
-        {user ? <ProfileNavItem onClick={signout}>Logout</ProfileNavItem> : ``}
+        {user ? <ProfileNavItem onClick={signout}>Signout</ProfileNavItem> : ``}
       </ProfileMenu>
     </>
   )

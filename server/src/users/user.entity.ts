@@ -12,7 +12,8 @@ import { Expose } from 'class-transformer';
 import { Address } from './address.entity';
 import { Profile } from './profile.entity';
 import { Post } from 'src/posts/post.entity';
-import { PublicFile } from 'src/files/public-file.entity';
+import { PublicFile } from 'src/files/publicFile.entity';
+import PrivateFile from 'src/privateFiles/privateFile.entity';
 
 @Entity()
 export class User {
@@ -26,37 +27,46 @@ export class User {
     @Column()
     public password: string;
 
+    @Expose()
     @OneToOne(() => Address, {
-        eager: true,
+        eager: false,
         cascade: true,
         nullable: true,
     })
     @JoinColumn()
     public address?: Address;
 
+    @Expose()
     @OneToOne(() => Profile, {
-        eager: true,
+        eager: false,
         cascade: true,
         nullable: true,
     })
     @JoinColumn()
     public profile: Profile;
 
+    @Expose()
     @JoinColumn()
     @OneToOne(() => PublicFile, {
         eager: true,
-        nullable: true,
     })
-    public avatar?: PublicFile;
+    public avatar: PublicFile;
+
+    @OneToMany(() => PrivateFile, (file: PrivateFile) => file.owner)
+    public files: PrivateFile[];
 
     @Column({ type: 'simple-array', default: 'MEMBER' })
+    @Expose()
     public role: Role[];
 
-    @OneToMany(() => Task, (task) => task.user, { eager: true, nullable: true })
+    @OneToMany(() => Task, (task) => task.user, {
+        eager: false,
+        nullable: true,
+    })
     public tasks: Task[];
 
     @OneToMany(() => Post, (post) => post.author, {
-        eager: true,
+        eager: false,
         nullable: true,
     })
     public posts: Post[];

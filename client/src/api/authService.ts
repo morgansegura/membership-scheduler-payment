@@ -16,9 +16,14 @@ type RegisterType = {
 }
 
 export const authService = {
+  authUser,
   signout,
   signin,
   register,
+}
+
+function authUser() {
+  return fetchWrapper.get(`${baseUrl}`)
 }
 
 function signout() {

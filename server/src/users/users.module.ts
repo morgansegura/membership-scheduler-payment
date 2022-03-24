@@ -5,13 +5,17 @@ import { UsersRepository } from './users.repository';
 import { FilesModule } from 'src/files/files.module';
 import { Address } from './address.entity';
 import { Profile } from './profile.entity';
+import { UsersController } from './users.controller';
+import { PrivateFilesModule } from 'src/privateFiles/privateFiles.module';
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([UsersRepository, Address, Profile]),
         FilesModule,
+        PrivateFilesModule,
     ],
-    providers: [UsersService, FilesModule],
+    controllers: [UsersController],
+    providers: [UsersService, FilesModule, PrivateFilesModule],
     exports: [UsersService],
 })
 export class UsersModule {}

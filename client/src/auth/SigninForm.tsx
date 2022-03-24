@@ -23,7 +23,7 @@ interface IProps {}
 export const SigninForm: React.FC<IProps> = (props: IProps) => {
   const router = useRouter()
   const { getStorage, setStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
+  const [user, setUser] = React.useState(Boolean(getStorage('user')))
   const { base, auth } = paths
 
   const {
@@ -40,21 +40,19 @@ export const SigninForm: React.FC<IProps> = (props: IProps) => {
         password: watch('password'),
       })
       .then(res => {
-        const { accessToken } = res
-        console.log({ res })
-        if (accessToken) {
+        const { username } = res
+        if (username) {
           setUser(true)
-          setStorage('accessToken', accessToken)
+          setStorage('user', username)
         }
-        alertService.success(`👍🏽  &nbsp Welcome back!`, {
+        alertService.success(`👍🏽  &nbsp Welcome back ${username}!`, {
           keepAfterRouteChange: true,
         })
       })
       .catch(error => {
-        alertService.error('🙀  &nbsp Something went wrong!', {
+        alertService.error('🙀  &nbsp Something went wrong, please try again.', {
           keepAfterRouteChange: true,
         })
-        console.log(error)
       })
   }
 

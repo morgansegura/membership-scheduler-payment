@@ -8,10 +8,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configValidationSchema } from './config.schema';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
-import { ExceptionsLoggerFilter } from 'utils/exceptions-logger.filter';
+import { ExceptionsLoggerFilter } from 'utils/exceptionsLogger.filter';
 import { APP_FILTER } from '@nestjs/core';
 import { PostsModule } from './posts/posts.module';
 import { CategoriesModule } from './categories/categories.module';
+import { SearchModule } from './search/search.module';
 
 @Module({
     imports: [
@@ -42,6 +43,7 @@ import { CategoriesModule } from './categories/categories.module';
         UsersModule,
         PostsModule,
         CategoriesModule,
+        SearchModule,
     ],
     controllers: [AppController],
     providers: [

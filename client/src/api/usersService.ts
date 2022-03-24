@@ -1,6 +1,6 @@
-import { fetchWrapper } from 'api'
+import { fetchWrapper } from './fetchWrapper'
 
-const baseUrl = 'admin/users'
+const baseUrl = 'users'
 
 type SignupType = {
   email: string
@@ -18,16 +18,30 @@ interface IUpdateUser {
   email: string
 }
 
-export const userService = {
+export const usersService = {
+  addAvatar,
   getAll,
   getById,
   create,
   update,
+  getAvatar,
   delete: _delete,
 }
 
 function getAll() {
-  return fetchWrapper.get(`${baseUrl}s`)
+  return fetchWrapper.get(`${baseUrl}`)
+}
+
+function addAvatar(params: any) {
+  return fetchWrapper.post(`${baseUrl}/avatar`, params)
+}
+
+function removeAvatar(params: any) {
+  return fetchWrapper.delete(`${baseUrl}/avatar`, params)
+}
+
+function getAvatar(params: any) {
+  return fetchWrapper.get(`${baseUrl}/avatar/:id`, params)
 }
 
 function getById(id: number) {

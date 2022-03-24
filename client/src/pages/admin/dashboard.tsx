@@ -3,13 +3,12 @@ import React from 'react'
 // [Auth]
 import { RegisterForm } from 'auth'
 // [Comonents]
-import { Base as Layout, HeadContent } from 'components/layouts'
+import { AuthorCard, Base as Layout, HeadContent } from 'components/layouts'
 // [Utils]
 import { siteMetadata } from 'utils'
 import { SuperLabel, UList } from 'styles/Typography'
 import { Cell, UserImage, Grid, Panel } from 'styles/Dashboard'
 import Link from 'next/link'
-import Avatar from 'components/icons/Avatar'
 
 type Props = {}
 
@@ -22,11 +21,7 @@ const DashboardPage: React.FC<Props> = () => {
         canonicalUrl={`${siteMetadata.siteUrl}/register`}
       />
       <Layout>
-        <Panel transparent>
-          <Avatar size="md" withOptions={true} />
-          <SuperLabel>Role</SuperLabel>
-          <div>Moderator</div>
-        </Panel>
+        <AuthorCard />
         <Grid>
           <Cell colWidth="1/7">
             <Panel>

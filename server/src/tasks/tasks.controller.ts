@@ -10,16 +10,16 @@ import {
     UseGuards,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
-import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
+import { CreateTaskDto } from './dto/createTask.dto';
+import { GetTasksFilterDto } from './dto/getTasksFilter.dto';
+import { UpdateTaskStatusDto } from './dto/updateTaskStatus.dto';
 import { Task } from './task.entity';
 import { User } from '../users/user.entity';
-import { GetUser } from '../users/get-user.decorator';
+import { GetUser } from '../users/getUser.decorator';
 import { Logger } from '@nestjs/common';
 import { Roles } from 'src/auth/roles.decorator';
 import { Role } from 'src/auth/role.enum';
-import JwtAuthenticationGuard from 'src/auth/jwt-auth.guard';
+import JwtAuthenticationGuard from 'src/auth/jwtAuth.guard';
 
 @Controller('admin/tasks')
 @UseGuards(JwtAuthenticationGuard)

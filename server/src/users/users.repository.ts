@@ -8,7 +8,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { User } from './user.entity';
 import * as bcrypt from 'bcryptjs';
 import { RegisterDto } from '../auth/dto/register.dto';
-import { PostgresErrorCode } from '../database/postgres-error-codes.enum';
+import { PostgresErrorCode } from '../database/postgresErrorCodes.enum';
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {

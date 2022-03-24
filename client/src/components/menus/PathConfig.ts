@@ -36,12 +36,12 @@ export const paths = {
 
   account: {
     dashboard: {
-      path: '/dashboard',
+      path: '/admin/dashboard',
       label: 'Dashboard',
       title: 'Dashboard',
     },
     profile: {
-      path: '/profile',
+      path: '/account/profile',
       label: 'Profile',
       title: 'Profile',
     },

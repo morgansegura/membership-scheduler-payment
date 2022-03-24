@@ -1,10 +1,22 @@
 import React from 'react'
-import { userService } from 'api'
+import Resizer from 'react-image-file-resizer'
+import { usersService, authService, alertService } from 'api'
 import { IconContainer, UserImage, UserText } from 'styles/Avatar'
 import { userInitials } from 'utils'
 import { useStorage } from 'hooks'
 import { MdAddAPhoto, MdNoPhotography } from 'react-icons/md'
-import { string } from 'yup'
+import AvatarEditor from 'react-avatar-editor'
+import Button from 'components/inputs/Button'
+import { emptyObject } from 'utils'
+
+type AvatarTypeProps = {
+  src: string
+  initial: string
+}
+
+const AvatarType: React.FC<AvatarTypeProps> = ({ src, initial }) => {
+  return src ? <img src={src} alt="Avatar image" /> : <UserText>{initial}</UserText>
+}
 
 type AvatarProps = {
   size?: string
@@ -14,81 +26,100 @@ type AvatarProps = {
 
 const Avatar: React.FC<AvatarProps> = ({ size, type, withOptions }) => {
   const { getStorage } = useStorage()
-  const [user, setUser] = React.useState(Boolean(getStorage('accessToken')))
-  const [userInitial, setUserInitial] = React.useState('W')
-  const [userImage, setUserImage] = React.useState('')
-  const [selectedImage, setSelectedImage] = React.useState('')
-  //   const [selectedImage, setSelectedImage] = React.useState(
-  //     'https://api.uifaces.co/our-content/donated/1H_7AxP0.jpg',
-  //   )
+  const [user, setUser] = React.useState(Boolean(getStorage('user')))
+  const [userInitial, setUserInitial] = React.useState(';)')
+  const [showAvatarCropper, setShowAvatarCropper] = React.useState<any>()
+  const [croppedImage, setCroppedImage] = React.useState<any>()
+  const [selectedImage, setSelectedImage] = React.useState<any>('')
+  const EditorRef = React.useRef<any>(null)
 
   const getUser = () => {
     if (user) {
-      userService.me().then((res: any) => {
-        const { username } = res
-        const initial = userInitials(`${username}`)
+      authService.authUser().then((res: any) => {
+        const { username, avatar } = res
+        const initial = userInitials(`${username?.toUpperCase()}`)
+        avatar === null || avatar === undefined || emptyObject(avatar)
+          ? ''
+          : setCroppedImage(avatar.url)
         setUserInitial(initial)
       })
     }
   }
 
-  interface IUpdateUser {
-    avatar?: any
-    // [rest: string]: any
+  const handleAvatarCropper = (e: any) => {
+    let file = e.target.files[0]
+    setSelectedImage(file)
+    setShowAvatarCropper(true)
   }
 
-  const uploadAvatar = (file: any) => {
-    userService.upload(file).then((res: any) => {
-      console.log(res)
-      const { avatar } = res
-      setSelectedImage(avatar)
+  const resizeFile = (file: any) =>
+    new Promise(resolve => {
+      Resizer.imageFileResizer(
+        file,
+        100,
+        100,
+        'png',
+        100,
+        0,
+        uri => {
+          resolve(uri)
+        },
+        'file',
+      )
     })
-  }
 
-  const uploadImage = async (e: any) => {
-    if (!userImage) {
-      const files = e.target.files
-      const data = new FormData()
-      data.append('file', files[0])
-      // data.append('upload_preset', 'UserAvatars')
-
-      const res = await fetch('https://api.cloudinary.com/v1_1/segurallc/image/upload', {
-        method: 'post',
-        body: data,
-      })
-
-      const file = await res.json()
-      console.log(file.secure_url)
-      setSelectedImage(file.secure_url)
-      uploadAvatar(file.secure_url)
-    } else {
-      // delete image
-      setSelectedImage('')
+  const handleProcessImage = async () => {
+    // Resize File
+    const image: any = await resizeFile(selectedImage)
+    setSelectedImage(image)
+    // Crop File
+    if (EditorRef.current) {
+      const imgScaled = EditorRef.current?.getImageScaledToCanvas().toDataURL()
+      setCroppedImage(imgScaled)
     }
-  }
-
-  const imageSelector = () => {
-    console.log('User has images or just wants to keep initials')
+    // Set FormData
+    const data = new FormData()
+    data.append('file', image)
+    // Send image to server
+    await usersService.addAvatar(data).then(() => {
+      alertService.success(`👍🏽  &nbsp Avatar successfully updated.`, {
+        keepAfterRouteChange: true,
+      })
+    })
+    // Reset views and image containers
+    setShowAvatarCropper(false)
   }
 
   React.useEffect(() => {
     getUser()
-  }, [])
+  }, [user])
 
   return (
-    <UserImage size={size}>
-      {selectedImage ? (
-        <img src={selectedImage} alt="Avatar" />
-      ) : (
-        <UserText>{userInitial}</UserText>
-      )}
-      {withOptions && !selectedImage && (
+    <>
+      <UserImage size={size}>
+        <AvatarType src={croppedImage} initial={userInitial} />
+        {withOptions && !selectedImage && (
+          <>
+            <input type="file" name="avatar" accept="image/*" onChange={handleAvatarCropper} />
+            <IconContainer>{!selectedImage ? <MdAddAPhoto /> : <MdNoPhotography />}</IconContainer>
+          </>
+        )}
+      </UserImage>
+
+      {withOptions && showAvatarCropper && (
         <>
-          <input type="file" accept=".jpg, .jpeg, .png" onChange={uploadImage} />
-          <IconContainer>{!selectedImage ? <MdAddAPhoto /> : <MdNoPhotography />}</IconContainer>
+          <AvatarEditor
+            ref={EditorRef}
+            image={selectedImage}
+            width={150}
+            height={150}
+            border={50}
+            scale={1.2}
+          />
+          <Button onClick={handleProcessImage}>Crop</Button>
         </>
       )}
-    </UserImage>
+    </>
   )
 }
 
