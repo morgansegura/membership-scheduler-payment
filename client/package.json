@@ -7,6 +7,9 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
+    "@mui/icons-material": "^5.5.1",
+    "@mui/material": "^5.5.2",
+    "@mui/styled-engine-sc": "^5.5.2",
     "@nestjs/jwt": "^8.0.0",
     "@nestjs/passport": "^8.2.1",
     "axios": "^0.26.0",
@@ -29,7 +32,7 @@
     "remark": "^14.0.1",
     "remark-html": "^15.0.0",
     "rxjs": "^7.5.4",
-    "styled-components": "^5.3.3",
+    "styled-components": "^5.3.5",
     "yup": "^0.32.11"
   },
   "devDependencies": {
