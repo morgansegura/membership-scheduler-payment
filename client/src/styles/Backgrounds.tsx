@@ -21,12 +21,12 @@ export const BGThemeColorsFromBottom = styled.div`
   }
 
   &:before {
-    background: linear-gradient(
+    /* background: linear-gradient(
       65deg,
       ${props => rgba(props.theme.body.bgcolor, 0.9)} 0%,
       ${rgba(style.colors.pink300, 0.0)} 45%,
       transparent 60%
-    );
+    ); */
     left: 0;
   }
   &:after {

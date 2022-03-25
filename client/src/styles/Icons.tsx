@@ -6,8 +6,8 @@ type MenuTileProps = {
 }
 
 export const Tile = styled.div`
-  background-color: ${props => props.theme.colors.panel[40]};
-  border: 1px solid ${props => props.theme.header.bgcolor};
+  /* background-color: ${props => props.theme.colors.panel[40]};
+  border: 1px solid ${props => props.theme.header.bgcolor}; */
   height: 4px;
   width: 20px;
   ${style.radius.sm};

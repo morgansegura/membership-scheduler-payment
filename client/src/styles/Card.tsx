@@ -12,7 +12,7 @@ export const CardContent = styled.div`
   display: flex;
   align-items: center;
   gap: ${style.sp[4]};
-  background-color: ${props => props.theme.colors.panel[5]};
+  /* background-color: ${props => props.theme.colors.panel[5]}; */
   padding: ${style.sp[4]} ${style.sp[5]};
   ${style.radius.xl}
 `

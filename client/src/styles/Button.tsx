@@ -105,41 +105,41 @@ export const Button = styled(props => props.as)`
     ${props =>
     props.themed === 'form'
       ? css`
-          background-color: ${props.theme.button.bgcolorForm};
+          /* background-color: ${props.theme.button.bgcolorForm};
           color: ${readableColor(
             props.theme.button.bgcolorForm,
             style.colors.slate900,
             style.colors.slate100,
-          )};
+          )}; */
 
-          &:hover {
+          /* &:hover {
             background-color: ${darken(0.05, props.theme.button.bgcolorForm)};
             color: ${readableColor(
-              darken(0.05, props.theme.button.bgcolorForm),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
+            darken(0.05, props.theme.button.bgcolorForm),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
           }
           &:active {
             background-color: ${darken(0.9, props.theme.button.bgcolorForm)};
             color: ${readableColor(
-              darken(0.9, props.theme.button.bgcolorForm),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
+            darken(0.9, props.theme.button.bgcolorForm),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
           }
           &:disabled {
             background-color: ${rgba(props.theme.button.bgcolorPrimary, 0.5)};
             color: ${readableColor(
-              rgba(props.theme.button.bgcolorForm, 0.5),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
-          }
+            rgba(props.theme.button.bgcolorForm, 0.5),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
+          } */
         `
       : props.themed === 'primary'
       ? css`
-          background-color: ${props.theme.button.bgcolorPrimary};
+          /* background-color: ${props.theme.button.bgcolorPrimary};
           color: ${readableColor(
             props.theme.button.bgcolorPrimary,
             style.colors.slate900,
@@ -149,31 +149,31 @@ export const Button = styled(props => props.as)`
           &:hover {
             background-color: ${darken(0.05, props.theme.button.bgcolorPrimary)};
             color: ${readableColor(
-              darken(0.05, props.theme.button.bgcolorPrimary),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
+            darken(0.05, props.theme.button.bgcolorPrimary),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
           }
           &:active {
             background-color: ${darken(0.09, props.theme.button.bgcolorPrimary)};
             color: ${readableColor(
-              darken(0.09, props.theme.button.bgcolorPrimary),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
+            darken(0.09, props.theme.button.bgcolorPrimary),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
           }
           &:disabled {
             background-color: ${rgba(props.theme.button.bgcolorPrimary, 0.5)};
             color: ${readableColor(
-              rgba(props.theme.button.bgcolorPrimary, 0.5),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
-          }
+            rgba(props.theme.button.bgcolorPrimary, 0.5),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
+          } */
         `
       : props.themed === 'secondary'
       ? css`
-          background-color: ${props.theme.button.bgcolorSecondary};
+          /* background-color: ${props.theme.button.bgcolorSecondary};
           color: ${readableColor(
             props.theme.button.bgcolorSecondary,
             style.colors.slate900,
@@ -183,30 +183,30 @@ export const Button = styled(props => props.as)`
           &:hover {
             background-color: ${darken(0.05, props.theme.button.bgcolorSecondary)};
             color: ${readableColor(
-              darken(0.05, props.theme.button.bgcolorSecondary),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
+            darken(0.05, props.theme.button.bgcolorSecondary),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
           }
           &:active {
             background-color: ${darken(0.9, props.theme.button.bgcolorSecondary)};
             color: ${readableColor(
-              darken(0.9, props.theme.button.bgcolorSecondary),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
+            darken(0.9, props.theme.button.bgcolorSecondary),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
           }
           &:disabled {
             background-color: ${rgba(props.theme.button.bgcolorSecondary, 0.5)};
             color: ${readableColor(
-              rgba(props.theme.button.bgcolorSecondary, 0.5),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
-          }
+            rgba(props.theme.button.bgcolorSecondary, 0.5),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
+          } */
         `
       : css`
-          background-color: ${props.theme.button.bgcolorDefault};
+          /* background-color: ${props.theme.button.bgcolorDefault};
           color: ${readableColor(
             props.theme.button.bgcolorDefault,
             style.colors.slate900,
@@ -216,27 +216,27 @@ export const Button = styled(props => props.as)`
           &:hover {
             background-color: ${darken(0.05, props.theme.button.bgcolorDefault)};
             color: ${readableColor(
-              darken(0.05, props.theme.button.bgcolorDefault),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
+            darken(0.05, props.theme.button.bgcolorDefault),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
           }
           &:active {
             background-color: ${darken(0.25, props.theme.button.bgcolorDefault)};
             color: ${readableColor(
-              darken(0.25, props.theme.button.bgcolorDefault),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
+            darken(0.25, props.theme.button.bgcolorDefault),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
           }
           &:disabled {
             background-color: ${darken(0.25, props.theme.button.bgcolorDefault)};
             color: ${readableColor(
-              darken(0.25, props.theme.button.bgcolorDefault),
-              style.colors.slate900,
-              style.colors.slate100,
-            )};
-          }
+            darken(0.25, props.theme.button.bgcolorDefault),
+            style.colors.slate900,
+            style.colors.slate100,
+          )};
+          } */
         `}
 
 	${({ loading }) =>

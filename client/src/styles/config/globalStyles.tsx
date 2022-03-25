@@ -8,7 +8,7 @@ const nprogress = css`
   }
 
   #nprogress .bar {
-    background: ${props => props.theme.colors.primary};
+    background: ${props => props.theme.pallette.secondary.dark};
 
     position: fixed;
     z-index: 1031;
@@ -26,8 +26,8 @@ const nprogress = css`
     right: 0px;
     width: 100px;
     height: 100%;
-    box-shadow: 0 0 10px ${props => props.theme.colors.primary},
-      0 0 5px ${props => props.theme.colors.primary};
+    box-shadow: 0 0 10px ${props => props.theme.pallette.secondary.dark},
+      0 0 5px ${props => props.theme.pallette.secondary.light};
     opacity: 1;
 
     -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -50,8 +50,8 @@ const nprogress = css`
     box-sizing: border-box;
 
     border: solid 2px transparent;
-    border-top-color: ${props => props.theme.colors.primary};
-    border-left-color: ${props => props.theme.colors.primary};
+    border-top-color: ${props => props.theme.pallette.secondary.dark};
+    border-left-color: ${props => props.theme.pallette.secondary.dark};
     border-radius: 50%;
 
     -webkit-animation: nprogress-spinner 400ms linear infinite;
@@ -92,11 +92,17 @@ export const GlobalStyle = css`
     padding: 0;
     margin: 0;
     font-size: ${style.sp['4']};
-    background-color: ${props => props.theme.body.bgcolor};
+    background-color: ${props =>
+      props.theme.pallette.mode === 'light'
+        ? props.theme.pallette.grey[50]
+        : props.theme.pallette.grey[900]};
     -webkit-text-size-adjust: 100%;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    color: ${props => props.theme.body.text};
+    color: ${props =>
+      props.theme.pallette.mode === 'light'
+        ? props.theme.pallette.common.black
+        : props.theme.pallette.common.white};
   }
 
   div,

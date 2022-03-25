@@ -13,7 +13,7 @@ export const UserText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.colors.primary};
+  /* background-color: ${props => props.theme.colors.primary}; */
   color: ${style.colors.white};
   font-weight: 900;
   overflow: hidden;

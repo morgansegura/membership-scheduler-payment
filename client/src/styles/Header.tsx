@@ -9,7 +9,7 @@ interface NavItemProps {
 export const Header = styled.div`
   position: relative;
   z-index: 2;
-  background-color: ${props => props.theme.header.bgcolor};
+  /* background-color: ${props => props.theme.header.bgcolor}; */
   margin-top: ${style.sp['3']};
   margin-bottom: ${style.sp['2.5']};
   ${style.radius['md']};
@@ -40,7 +40,7 @@ export const Header = styled.div`
     transition: color 0.3s ease-out;
 
     &:hover {
-      color: ${props => props.theme.button.bgcolorForm};
+      /* color: ${props => props.theme.button.bgcolorForm}; */
     }
   }
 `
@@ -54,7 +54,7 @@ export const Logo = styled.div`
   ${style.fontSizing('14px', '28px', 700)}
   letter-spacing: 0.0523em;
   text-transform: uppercase;
-  color: ${props => props.theme.colors.panel[90]};
+  /* color: ${props => props.theme.colors.panel[90]}; */
 `
 export const Nav = styled.nav`
   display: flex;
@@ -72,6 +72,6 @@ export const NavItem = styled.span`
   ${(props: NavItemProps) =>
     props.active &&
     `
-        color: ${props.theme.button.bgcolorForm};
+        /* color: ${props.theme.button.bgcolorForm}; */
     `};
 `

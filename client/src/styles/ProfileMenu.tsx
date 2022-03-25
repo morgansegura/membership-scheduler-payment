@@ -40,12 +40,12 @@ export const Menu = styled.div`
   flex-direction: column;
   ${style.shadow.lg}
   ${style.radius.lg}
-	background-color: ${props => props.theme.menu.bgcolor};
+	/* background-color: ${props => props.theme.menu.bgcolor}; */
   transform-origin: 0 100%;
   min-width: 200px;
   padding-bottom: ${style.sp['2']};
-  border-top: 1px solid ${props => props.theme.colors.panel[20]};
-  color: ${props => props.theme.colors.panel[80]};
+  /* border-top: 1px solid ${props => props.theme.colors.panel[20]};
+  color: ${props => props.theme.colors.panel[80]}; */
   letter-spacing: normal;
   transition: opacity 0.3s ease-out;
 
@@ -74,11 +74,11 @@ export const ProfileNavItem = styled.div`
   cursor: pointer;
   border-top: 1px solid transparent;
   transition: background-color 0.3s ease-out;
-  border-bottom: 1px solid ${props => props.theme.menu.bordercolor};
-  color: ${props => props.theme.colors.panel[80]};
+  /* border-bottom: 1px solid ${props => props.theme.menu.bordercolor};
+  color: ${props => props.theme.colors.panel[80]}; */
 
   &:hover {
-    background-color: ${props => rgba(props.theme.colors.panel[10], 0.6)};
+    /* background-color: ${props => rgba(props.theme.colors.panel[10], 0.6)}; */
   }
 
   ${(props: ActiveProps) => props.active && css``}
@@ -95,7 +95,7 @@ export const Avatar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.colors.primary};
+  /* background-color: ${props => props.theme.colors.primary}; */
   color: ${style.colors.white};
   ${style.fontSizing('20px', '40px')}
   font-weight: 900;
@@ -105,7 +105,7 @@ export const Avatar = styled.div`
   ${(props: AvatarProps) =>
     props.focus
       ? css`
-          outline: 4px solid ${props => rgba(props.theme.colors.panel[30], 0.6)};
+          /* outline: 4px solid ${props => rgba(props.theme.colors.panel[30], 0.6)}; */
         `
       : css`
           outline: 4px solid transparent;
@@ -118,9 +118,9 @@ export const Tab = styled.div`
   padding: ${style.sp[2.5]} ${style.sp[4]} ${style.sp[1.5]} ${style.sp[4]};
   ${style.fontSizing('14px', '28px', 700)}
   text-transform: uppercase;
-  color: ${props => props.theme.colors.panel[60]};
+  /* color: ${props => props.theme.colors.panel[60]};
   background-color: ${props => rgba(props.theme.colors.panel[20], 0.4)};
-  border-bottom: 1px solid ${props => rgba(props.theme.colors.panel[20], 0.6)};
+  border-bottom: 1px solid ${props => rgba(props.theme.colors.panel[20], 0.6)}; */
 `
 
 export const Badge = styled.strong`
@@ -133,9 +133,7 @@ export const Badge = styled.strong`
   padding: ${style.sp[1.5]};
   ${style.fontSizing('12px', '24px')}
   font-weight: 900;
-  ${style.radius.circle}
-
-  ${(props: ThemeProps) =>
+  ${style.radius.circle}/* ${(props: ThemeProps) =>
     props.theme === 'success'
       ? css`
           color: ${style.colors.red50};
@@ -154,5 +152,5 @@ export const Badge = styled.strong`
       : css`
           color: ${style.colors.slate900};
           background-color: ${style.colors.slate200};
-        `}
+        `} */
 `

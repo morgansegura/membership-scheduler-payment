@@ -49,7 +49,7 @@ type PanelProps = {
 
 export const Panel = styled.div`
   background-color: ${(props: PanelProps) =>
-    !props.transparent ? props.theme.colors.panel[0] : 'transparent'};
+    /* !props.transparent ? props.theme.colors.panel[0] : 'transparent'}; */
   ${style.radius.xl}
 `
 

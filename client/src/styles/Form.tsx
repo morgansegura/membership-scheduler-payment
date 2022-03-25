@@ -21,10 +21,10 @@ export const AuthForm = styled.form`
   padding-left: ${style.sp['16']};
   gap: ${style.sp['5']};
   ${style.radius.xl};
-  background-color: ${props => props.theme.form.bgcolor};
-  border: ${props => props.theme.form.border};
-  ${props => props.theme.form.radius};
-  ${props => props.theme.form.boxshadow};
+  /* background-color: ${props => props.theme.form.bgcolor}; */
+  /* border: ${props => props.theme.form.border}; */
+  /* ${props => props.theme.form.radius}; */
+  /* ${props => props.theme.form.boxshadow}; */
 
   button:nth-child(1) {
     flex: 1;
@@ -40,9 +40,9 @@ export const TextField = styled.div`
   z-index: 1;
   align-items: center;
   ${style.radius.md};
-  background-color: ${props => props.theme.input.bgcolor};
+  /* background-color: ${props => props.theme.input.bgcolor};
   border: ${props => props.theme.input.border};
-  outline: 5px solid ${props => props.theme.input.outlineColor};
+  outline: 5px solid ${props => props.theme.input.outlineColor}; */
   transition: border 0.3s ease-out;
 
   div {
@@ -56,7 +56,7 @@ export const TextField = styled.div`
     padding-left: ${style.sp['1']};
     padding-right: ${style.sp['1']};
     user-select: none;
-    color: ${props => props.theme.input.label};
+    /* color: ${props => props.theme.input.label}; */
     transition: transform 0.2s ease-out;
 
     &:after {
@@ -71,7 +71,7 @@ export const TextField = styled.div`
     flex: 1;
     display: flex;
     padding: ${style.sp['4']} ${style.sp['6']};
-    color: ${props => props.theme.form.label};
+    /* color: ${props => props.theme.form.label}; */
     ${style.radius.md};
     transition: outline-color 0.3s ease-out;
     background-color: transparent;
@@ -88,18 +88,18 @@ export const TextField = styled.div`
   ${(props: TextFieldProps) =>
     props.focus &&
     css`
-      background-color: ${props => props.theme.input.bgcolorFocus};
-      border: ${props => props.theme.input.borderFocus};
+      /* background-color: ${props => props.theme.input.bgcolorFocus};
+      border: ${props => props.theme.input.borderFocus}; */
 
       input {
-        color: ${props => props.theme.form.label};
+        /* color: ${props => props.theme.form.label}; */
       }
 
       div {
         z-index: 3;
         transform: translateY(-25px);
         ${style.fontSizing('12px', '12px')};
-        color: ${props => props.theme.input.labelFocus};
+        /* color: ${props => props.theme.input.labelFocus}; */
 
         &:after {
           content: '';
@@ -108,7 +108,7 @@ export const TextField = styled.div`
           top: 4px;
           left: 0;
           right: 0;
-          background-color: ${props => props.theme.form.bgcolor};
+          /* background-color: ${props => props.theme.form.bgcolor}; */
           transform: translateY(-50%);
           height: 3px;
           ${style.radius.base}
@@ -119,18 +119,18 @@ export const TextField = styled.div`
   ${(props: TextFieldProps) =>
     props.blur &&
     css`
-      background-color: ${props => props.theme.input.bgcolor};
-      border: ${props => props.theme.input.border};
+      /* background-color: ${props => props.theme.input.bgcolor};
+      border: ${props => props.theme.input.border}; */
 
       input {
-        color: ${props => props.theme.input.label};
+        /* color: ${props => props.theme.input.label}; */
       }
 
       div {
         ${style.fontSizing('14px', '14px')};
         z-index: -1;
         transform: translateY(0);
-        color: ${props => props.theme.input.label};
+        /* color: ${props => props.theme.input.label}; */
 
         &:after {
           background-color: transparent;
@@ -144,7 +144,7 @@ export const FormTitle = styled.div`
   justify-content: center;
   padding-top: ${style.sp['3']};
   padding-bottom: ${style.sp['3']};
-  color: ${props => props.theme.form.label};
+  /* color: ${props => props.theme.form.label}; */
 `
 
 export const ToggleForm = styled.div`
@@ -175,16 +175,16 @@ export const ErrorList = styled.div`
 
   &.error {
     ${TextField} {
-      background-color: ${props => props.theme.input.bgcolorError};
-      border: ${props => props.theme.input.borderError};
+      /* background-color: ${props => props.theme.input.bgcolorError};
+      border: ${props => props.theme.input.borderError}; */
     }
 
     input {
-      color: ${props => props.theme.input.labelError};
+      /* color: ${props => props.theme.input.labelError}; */
     }
 
     div {
-      color: ${props => props.theme.input.labelError};
+      /* color: ${props => props.theme.input.labelError}; */
     }
   }
 
@@ -195,7 +195,7 @@ export const ErrorList = styled.div`
     z-index: 4;
     padding: 0 3px;
     right: ${style.sp['4']};
-    color: ${props => props.theme.input.labelError};
+    /* color: ${props => props.theme.input.labelError}; */
     ${style.fontSizing('12px', '12px')}
 
     &:first-letter {
@@ -209,7 +209,7 @@ export const ErrorList = styled.div`
       top: 70%;
       left: 0;
       right: 0;
-      background-color: ${props => props.theme.form.bgcolor};
+      /* background-color: ${props => props.theme.form.bgcolor}; */
       transform: translateY(-50%);
       height: 2px;
     }

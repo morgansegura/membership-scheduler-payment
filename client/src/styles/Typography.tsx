@@ -25,7 +25,7 @@ export const SuperLabel = styled.div`
   text-transform: uppercase;
   letter-spacing: 0.0345em;
   ${style.fontSizing('12px', '20px', 700)};
-  color: ${props => props.theme.colors.panel[40]};
+  /* color: ${props => props.theme.colors.panel[40]}; */
 `
 
 export const Label = styled.div`

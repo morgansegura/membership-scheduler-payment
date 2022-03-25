@@ -3,6 +3,7 @@ import React from 'react'
 import { Base, HeadContent, RoleGuardLayout } from 'components'
 // [Utils]
 import { siteMetadata } from 'utils'
+import { Box } from 'components/core'
 
 type Props = {
   user: any
@@ -30,6 +31,7 @@ const Home: React.FC<Props> = () => {
         <RoleGuardLayout level="admin">
           <h1>Admin level html</h1>
         </RoleGuardLayout>
+        <Box>This is a box</Box>
       </Base>
     </>
   )

@@ -6,7 +6,7 @@ import { Button } from 'components'
 // [Styles]
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { GlobalStyle } from 'styles/config/globalStyles'
-import { themeLight, themeDark } from 'styles/Theme'
+import { themeLight, themeDark } from 'styles/theme/default'
 
 type Props = {
   children?: React.ReactChild[] | React.ReactChild
