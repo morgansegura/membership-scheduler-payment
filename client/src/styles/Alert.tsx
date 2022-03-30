@@ -1,15 +1,13 @@
 import styled from 'styled-components'
 import * as style from 'styles/config/utilities'
-import { fadeSlideInBottom, fadeSlideOutBottom } from 'styles/keyframes'
-import { rgba } from 'polished'
 
 export const AlertContainer = styled.div`
-    position: relative;
-    z-index: 4;
+  /* position: relative;
+  z-index: 4; */
 `
 
 export const AlertContent = styled.div`
-    position: fixed;
+  /* position: fixed;
     width: 100%;
     gap: ${style.sp['1.5']};
     bottom: ${style.sp['10']};
@@ -18,13 +16,13 @@ export const AlertContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 `
 
 export const Icon = styled.div``
 
 export const AlertItem = styled.div`
-    position: relative;
+  /* position: relative;
     display: flex;
     max-width: ${style.contain.sm};
     align-items: center;
@@ -96,5 +94,5 @@ export const AlertItem = styled.div`
                 stroke: ${style.colors.slate100};
             }
         }
-    }
+    } */
 `

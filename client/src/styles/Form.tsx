@@ -1,14 +1,13 @@
 import styled, { css } from 'styled-components'
 import * as style from 'styles/config/utilities'
-import { rgba } from 'polished'
 
 interface TextFieldProps {
-  focus?: boolean
-  blur?: boolean
+  // focus?: boolean
+  // blur?: boolean
 }
 
 export const AuthForm = styled.form`
-  position: relative;
+  /* position: relative;
   z-index: 1;
   display: flex;
   box-sizing: border-box;
@@ -32,10 +31,10 @@ export const AuthForm = styled.form`
     margin-top: ${style.sp['4.5']};
     margin-bottom: ${style.sp['4.5']};
     ${style.shadow.base};
-  }
+  } */
 `
 export const TextField = styled.div`
-  position: relative;
+  /* position: relative;
   display: inline-flex;
   z-index: 1;
   align-items: center;
@@ -63,7 +62,6 @@ export const TextField = styled.div`
       background-color: transparent;
     }
   }
-
   input {
     position: relative;
     overflow: hidden;
@@ -163,13 +161,13 @@ export const ToggleForm = styled.div`
   button {
     padding-top: ${style.sp['1']};
     padding-bottom: ${style.sp['1']};
-    border: 1px solid ${rgba(style.colors.slate300, 0.5)};
-    ${style.radius.base}/* ${style.shadow.md} */
-  }
+    border: 1px solid red;
+    ${style.radius.base}/* ${style.shadow.md}
+  }  */
 `
 
 export const ErrorList = styled.div`
-  position: relative;
+  /* position: relative;
   display: flex;
   flex-direction: column;
 
@@ -213,5 +211,5 @@ export const ErrorList = styled.div`
       transform: translateY(-50%);
       height: 2px;
     }
-  }
+  } */
 `

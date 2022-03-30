@@ -2,12 +2,12 @@ import styled from 'styled-components'
 import * as style from 'styles/config/utilities'
 
 interface NavItemProps {
-  active?: boolean
-  theme?: any
+  // active?: boolean
+  // theme?: any
 }
 
 export const Header = styled.div`
-  position: relative;
+  /* position: relative;
   z-index: 2;
   background-color: ${props => props.theme.header.bgcolor};
   margin-top: ${style.sp['3']};
@@ -42,28 +42,28 @@ export const Header = styled.div`
     &:hover {
       color: ${props => props.theme.button.bgcolorForm};
     }
-  }
+  } */
 `
 export const Menu = styled.div`
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: space-between;
-  flex: 1 0 auto;
+  flex: 1 0 auto; */
 `
 export const Logo = styled.div`
-  ${style.fontSizing('14px', '28px', 700)}
+  /* ${style.fontSizing('14px', '28px', 700)}
   letter-spacing: 0.0523em;
   text-transform: uppercase;
-  color: ${props => props.theme.colors.panel[90]};
+  color: ${props => props.theme.colors.panel[90]}; */
 `
 export const Nav = styled.nav`
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-self: flex-end;
-  grid-gap: ${style.sp['5']};
+  grid-gap: ${style.sp['5']}; */
 `
 export const NavItem = styled.span`
-  cursor: pointer;
+  /* cursor: pointer;
   ${style.fontSizing('12px', '20px', 600)}
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -73,5 +73,5 @@ export const NavItem = styled.span`
     props.active &&
     `
         color: ${props.theme.button.bgcolorForm};
-    `};
+    `}; */
 `

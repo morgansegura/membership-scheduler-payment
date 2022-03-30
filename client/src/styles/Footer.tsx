@@ -1,24 +1,23 @@
 import styled from 'styled-components'
 import * as include from 'styles/config/utilities'
-import { rgba } from 'polished'
 
 interface NavItemProps {
-    active?: boolean
+  active?: boolean
 }
 
 export const Footer = styled.div`
-    background-color: ${include.colors.slate300};
-    margin-top: ${include.sp['3']};
-    margin-bottom: ${include.sp['2.5']};
-    ${include.radius['md']};
-    padding: ${include.sp['4']} ${include.sp['4']};
+  /* background-color: ${include.colors.slate300};
+  margin-top: ${include.sp['3']};
+  margin-bottom: ${include.sp['2.5']};
+  ${include.radius['md']};
+  padding: ${include.sp['4']} ${include.sp['4']};
 
-    ${include.media['lg']`
+  ${include.media['lg']`
 		padding-right: ${include.sp['4']};
 		padding-left: ${include.sp['4']};
 	`}
 
-    ${include.media['xl']`
+  ${include.media['xl']`
 		padding-right: ${include.sp['6']};
 		padding-left: ${include.sp['6']};
 	`}
@@ -29,29 +28,29 @@ export const Footer = styled.div`
 	`}
 
 	a {
-        text-decoration: none;
-    }
+    text-decoration: none;
+  } */
 `
 export const Menu = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
 `
 export const Logo = styled.div`
-    ${include.fontSizing('13px', '21px', 500)}
+  /* ${include.fontSizing('13px', '21px', 500)}
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: ${include.colors.slate800};
+    color: ${include.colors.slate800}; */
 `
 export const Nav = styled.nav`
-    display: flex;
+  /* display: flex;
     align-items: center;
     justify-self: flex-end;
-    grid-gap: ${include.sp['3']};
+    grid-gap: ${include.sp['3']}; */
 `
 
 export const NavItem = styled.span`
-    ${include.fontSizing('13px', '21px', 500)}
+  /* ${include.fontSizing('13px', '21px', 500)}
     text-transform: uppercase;
     color: ${include.colors.slate700};
     padding: ${include.sp[1]} ${include.sp[2]};
@@ -64,13 +63,13 @@ export const NavItem = styled.span`
     }
 
     ${(props: NavItemProps) =>
-        props?.active &&
-        `
+    props?.active &&
+    `
         color: ${include.colors.blue600};
-    `};
+    `}; */
 `
 
 export const FooterCopyright = styled.div`
-    ${include.fontSizing('13px', '21px')}
-    color: ${include.colors.slate800}
+  /* ${include.fontSizing('13px', '21px')}
+    color: ${include.colors.slate800} */
 `

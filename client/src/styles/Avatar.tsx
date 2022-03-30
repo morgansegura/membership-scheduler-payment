@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components'
 import * as style from 'styles/config/utilities'
-import { rgba } from 'polished'
 
 export const UserText = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -17,7 +16,7 @@ export const UserText = styled.div`
   color: ${style.colors.white};
   font-weight: 900;
   overflow: hidden;
-  transition: outline 0.3s ease-out;
+  transition: outline 0.3s ease-out; */
 `
 
 type UserImageProps = {
@@ -25,7 +24,7 @@ type UserImageProps = {
 }
 
 export const IconContainer = styled.div`
-  position: absolute;
+  /* position: absolute;
   cursor: pointer;
   z-index: 1;
   opacity: 0;
@@ -41,11 +40,11 @@ export const IconContainer = styled.div`
     font-size: 25px;
     fill: ${rgba(style.colors.white, 0.9)};
   }
-  transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out; */
 `
 
 export const UserImage = styled.div`
-  position: relative;
+  /* position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,5 +106,5 @@ export const UserImage = styled.div`
 
   img {
     display: flex;
-  }
+  } */
 `

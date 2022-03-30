@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 import * as style from 'styles/config/utilities'
-import { rgba } from 'polished'
 
 interface MenuProps {
   isVisible: boolean
@@ -16,7 +15,7 @@ interface ActiveProps {
 }
 
 export const MenuSelector = styled.div`
-  position: relative;
+  /* position: relative;
   z-index: 2;
   cursor: pointer;
   transition: opacity 0.3s ease-out;
@@ -27,11 +26,11 @@ export const MenuSelector = styled.div`
 
   &:hover {
     opacity: 0.8;
-  }
+  } */
 `
 
 export const Menu = styled.div`
-  position: absolute;
+  /* position: absolute;
   z-index: 1;
   overflow: hidden;
   top: 38px;
@@ -60,11 +59,11 @@ export const Menu = styled.div`
 
   a {
     display: flex;
-  }
+  } */
 `
 
 export const ProfileNavItem = styled.div`
-  flex: 1 0 auto;
+  /* flex: 1 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -84,11 +83,11 @@ export const ProfileNavItem = styled.div`
   ${(props: ActiveProps) => props.active && css``}
 
   &:active {
-  }
+  } */
 `
 
 export const Avatar = styled.div`
-  user-select: none;
+  /* user-select: none;
   ${style.radius.circle};
   width: 40px;
   height: 40px;
@@ -109,22 +108,22 @@ export const Avatar = styled.div`
         `
       : css`
           outline: 4px solid transparent;
-        `}
+        `} */
 `
 
 export const Tab = styled.div`
-  display: flex;
+  /* display: flex;
   align-items: center;
   padding: ${style.sp[2.5]} ${style.sp[4]} ${style.sp[1.5]} ${style.sp[4]};
   ${style.fontSizing('14px', '28px', 700)}
   text-transform: uppercase;
   color: ${props => props.theme.colors.panel[60]};
   background-color: ${props => rgba(props.theme.colors.panel[20], 0.4)};
-  border-bottom: 1px solid ${props => rgba(props.theme.colors.panel[20], 0.6)};
+  border-bottom: 1px solid ${props => rgba(props.theme.colors.panel[20], 0.6)}; */
 `
 
 export const Badge = styled.strong`
-  cursor: pointer;
+  /* cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -154,5 +153,5 @@ export const Badge = styled.strong`
       : css`
           color: ${style.colors.slate900};
           background-color: ${style.colors.slate200};
-        `}
+        `} */
 `

@@ -46,7 +46,7 @@ const NavLinks: React.FC<NavLinksProps> = () => {
 
   return (
     <>
-      <ProfileMenu>
+      {/* <ProfileMenu>
         <RoleGuardLayout level="guest">
           <>
             {!isActive(`${base.landing.path}`) && (
@@ -89,7 +89,7 @@ const NavLinks: React.FC<NavLinksProps> = () => {
           {theme === 'light' ? 'Dark' : 'Light'} Mode
         </ProfileNavItem>
         {user ? <ProfileNavItem onClick={signout}>Signout</ProfileNavItem> : ``}
-      </ProfileMenu>
+      </ProfileMenu> */}
     </>
   )
 }

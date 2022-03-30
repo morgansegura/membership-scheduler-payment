@@ -1,16 +1,16 @@
 import styled from 'styled-components'
-import { rgba } from 'polished'
+
 import * as style from 'styles/config/utilities'
 
 export const BGContainer = styled.div`
-  user-select: none;
+  /* user-select: none;
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 100%;
+  height: 100%; */
 `
 export const BGThemeColorsFromBottom = styled.div`
-  &:before,
+  /* &:before,
   &:after {
     z-index: -1;
     content: '';
@@ -37,5 +37,5 @@ export const BGThemeColorsFromBottom = styled.div`
       transparent 60%
     );
     right: 0;
-  }
+  } */
 `

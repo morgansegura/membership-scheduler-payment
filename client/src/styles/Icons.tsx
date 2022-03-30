@@ -6,7 +6,7 @@ type MenuTileProps = {
 }
 
 export const Tile = styled.div`
-  background-color: ${props => props.theme.colors.panel[40]};
+  /* background-color: ${props => props.theme.colors.panel[40]};
   border: 1px solid ${props => props.theme.header.bgcolor};
   height: 4px;
   width: 20px;
@@ -21,10 +21,10 @@ export const Tile = styled.div`
   &:nth-child(3) {
     transform: translateY(0) rotate(0);
   }
-  transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out; */
 `
 export const MenuTile = styled.div`
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -51,5 +51,5 @@ export const MenuTile = styled.div`
             border-color: transparent;
           }
         `
-      : ``}
+      : ``} */
 `

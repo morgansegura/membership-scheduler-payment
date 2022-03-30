@@ -7,7 +7,10 @@ import { useRouter } from 'next/router'
 // [Auth]
 import { alertService, authService } from 'api'
 // [Components]
-import { Button, TextInput, paths } from 'components'
+import { TextInput, paths } from 'components'
+// [Mui]
+import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
 // [Styles]
 import { AuthForm, ErrorList, FormTitle, ToggleForm } from 'styles/Form'
 import { ButtonContainer } from 'styles/Button'
@@ -148,18 +151,18 @@ const RegisterForm: React.FC<IProps> = () => {
           />
           {errors.passwordConfirm?.message && <p>{errors.passwordConfirm?.message}</p>}
         </ErrorList>
-        <ButtonContainer>
-          <Button themed="form" size="md" radius="circle" type="submit">
-            Sign Up
-          </Button>
-        </ButtonContainer>
+        <Button variant="contained" disableElevation type="submit">
+          Sign Up
+        </Button>
       </AuthForm>
 
       <ToggleForm>
         <p>Already a member?</p>
         <Link href={auth.signin.path}>
           <a>
-            <Button size="xs">Login Here</Button>
+            <Button variant="outlined" size="small">
+              Login Here
+            </Button>
           </a>
         </Link>
       </ToggleForm>

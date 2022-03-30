@@ -28,7 +28,6 @@ const HeadContent: React.FC<Props> = ({
       <title>
         {title} » {siteMetadata.companyName}
       </title>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={description} />
       {/* twitter metadata */}
       <meta name="twitter:card" content="summary" />
@@ -49,7 +48,7 @@ const HeadContent: React.FC<Props> = ({
       {/* Theming */}
       <meta name="msapplication-TileColor" content="#00df94" />
       <meta name="theme-color" content="#00df94" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       {/* Favicon */}
       <link rel="icon" href="/favicon.ico" />
       {/* Icons */}
@@ -62,10 +61,12 @@ const HeadContent: React.FC<Props> = ({
       {children}
     </Head>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700;800&family=Source+Sans+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    />
+    ></link>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   </>
 )

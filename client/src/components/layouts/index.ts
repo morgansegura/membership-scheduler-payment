@@ -1,6 +1,3 @@
-export { default as Base } from './Base'
-export { default as Header } from './Header'
+export { default as BaseLayout } from './Base'
 export { default as HeadContent } from './HeadContent'
-export { default as Navigation } from './Navigation'
-export { default as RoleGuardLayout } from './RoleGuardLayout'
 export * from './cards'
