@@ -32,18 +32,9 @@ const Home: React.FC<Props> = () => {
 					<h1>Admin level html</h1>
 				</RoleGuardLayout>
 				<Box
-					border={{ xs: '1px solid primary.green', sm: '2px solid secondary.dark' }}
-					// borderBottom={}
-					// borderBottomColor={}
-					// borderColor={}
-					// borderLeft={}
-					// borderLeftColor={}
-					// borderRadius={}
-					// borderRight={}
-					// borderRightColor={}
-					// borderTop={}
-					// borderTopColor={}
-					// boxShadow={}
+					// border={'1px solid primary.dark'}
+					borderRadius={{ xs: 5, sm: '20px' }}
+					boxShadow={{ xs: 5 }}
 					// displayPrint={}
 					// displayRaw={}
 					// alignContent={}
@@ -96,7 +87,7 @@ const Home: React.FC<Props> = () => {
 					// marginBlock={}
 					// marginBlockStart={}
 					// marginBlockEnd={}
-					// p={}
+					p={{ xs: 1 }}
 					// pb={}
 					// pl={}
 					// pr={}

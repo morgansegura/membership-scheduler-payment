@@ -4,19 +4,16 @@ import * as property from 'styles/config/properties'
 
 export const Box = styled(props => props.as)`
 	${property.border};
-	/* ${property.borderTop};
-  ${property.borderRight};
-  ${property.borderBottom};
-  ${property.borderLeft};
-  ${property.borderColor};
-  ${property.borderTopColor};
-  ${property.borderRightColor};
-  ${property.borderBottomColor};
-  ${property.borderLeftColor};
-  ${property.boxShadow};
-  ${property.borderRadius};
-  ${property.displayPrint};
-  ${property.displayRaw};
+	${property.borderTop};
+	${property.borderRight};
+	${property.borderBottom};
+	${property.borderLeft};
+	${property.borderColor};
+	${property.borderRadius};
+	${property.boxShadow};
+	${property.displayPrint};
+	${property.displayRaw};
+	/*
   ${property.alignContent};
   ${property.alignItems};
   ${property.alignSelf};

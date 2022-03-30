@@ -377,48 +377,24 @@ export function filterMap(arr: any, item: string) {
 	})
 }
 
-export function getPallette(obj: any, item: string) {
-	const objItem = item.split('.')
-	if (obj && Object?.keys(obj)?.includes(objItem[0])) {
-		return obj[objItem[0]][objItem[1]]
-	}
-	// Not in pallette
-	else if (obj && !Object.keys(obj).includes(objItem[0])) {
-		// In base theme colors
-		if (Object.keys(colors).includes(item)) {
-			return colors[item]
-		} else {
-			return item
-		}
-	}
-}
-
-export function filterColorPallette(props: {}, item: string | {}) {
-	if (item && typeof item === 'string') {
-		return getPallette(props?.theme?.pallette, item)
-	} else if (item && typeof item === 'object') {
-		const colors = Object.entries(item).map((o: any, i: number) => {
-			return [Object.keys(item)[i], getPallette(props?.theme?.pallette, Object.values(item)[i])]
-		})
-		return Object.fromEntries(colors)
-	} else {
-		return false
-	}
-}
-
 export function getItemType(item: unknown) {
 	return typeof item
 }
 
 export function translatePalletteColors(props: any, str: string) {
-	if (!str.includes('.')) return
+	if (typeof str !== 'string' || !str.includes('.')) return
 	let phrase = str.split(' ')
 
 	Object.keys(props.theme.pallette).filter((color: string, i: number) => {
 		if (String(phrase[i]).includes('.')) {
 			const captureArr: string[] = []
 			let captureStr: string[] = phrase[i].split('.')
-			str = str.replace(phrase[i], props.theme.pallette[captureStr[0]][captureStr[1]])
+			if (
+				Object.keys(props.theme.pallette).includes(captureStr[0]) &&
+				Object.keys(props.theme.pallette[captureStr[0]]).includes(captureStr[1])
+			) {
+				str = str.replace(phrase[i], props.theme.pallette[captureStr[0]][captureStr[1]])
+			}
 		}
 	})
 
@@ -427,6 +403,7 @@ export function translatePalletteColors(props: any, str: string) {
 
 // [Note] This only works for predefined colors
 export function translateThemeColors(props: any, str: string) {
+	if (typeof str !== 'string') return
 	const phrase = str.split(' ')
 
 	Object.keys(colors).filter((color: string, i: number) => {
@@ -438,7 +415,7 @@ export function translateThemeColors(props: any, str: string) {
 	return str
 }
 
-export function translateColors(props: any, str: string) {
+export function translateColors(props: any, str: any) {
 	if (translatePalletteColors(props, str)) {
 		str = translatePalletteColors(props, str)
 	}
@@ -447,6 +424,14 @@ export function translateColors(props: any, str: string) {
 	}
 
 	return str
+}
+
+export function mediaQueryBlock(props: any, size: string, styles: any[]) {
+	return css`
+		@media screen and (min-width: ${props.theme.breakpoints.values[size]}px) {
+			${styles}
+		}
+	`
 }
 
 export function mediaQueries(props: any, collection: any, property: string, x: string = '') {
@@ -458,50 +443,31 @@ export function mediaQueries(props: any, collection: any, property: string, x: s
 			`
 			break
 		case 'number':
-			return css`
-				${{ [property]: `${collection}px ${x}` }}
-			`
+			if (property === 'shadow') {
+				return css`
+					${{ [property]: `${props.theme.shadows[collection]}` }}
+				`
+			} else if (x === 'border') {
+				return css`
+					${{ [property]: `${String(collection)}px solid` }}
+				`
+			} else {
+				return css`
+					${{ [property]: `${String(collection)}px ` }}
+				`
+			}
 			break
 		case 'object':
-			// collection = translateColors(props, collection)
-			return Object.entries(collection).map(
-				(o: any, i: number) =>
-					css`
-						@media screen and (min-width: ${props.theme.breakpoints.values[
-								Object.keys(collection)[i]
-							]}px) {
-							${{ [property]: translateColors(props, o[1]) }}
-						}
-					`,
-			)
-			break
-		default:
-			return css`
-				${{ [property]: `${collection} ${x}` }}
-			`
+			return Object.entries(collection).map((o: any, i: number) => {
+				if (x === 'shadow') {
+					return mediaQueryBlock(props, o[0], [{ [property]: props.theme.shadows[o[1]] }])
+				} else {
+					return mediaQueryBlock(props, o[0], [{ [property]: translateColors(props, o[1]) }])
+				}
+			})
 			break
 	}
 }
-
-export function mapMediaQueries(props: any, obj: any, property: string, x?: string) {
-	if (property && typeof obj === 'string') {
-		console.log(Object.keys(obj))
-		return { [property]: Object.keys(obj)[1] + x }
-	} else if (property && typeof obj === 'object') {
-		return Object.entries(obj).map(
-			(o, i) =>
-				css`
-					@media screen and (min-width: ${props.theme.breakpoints.values[Object.keys(obj)[i]]}px) {
-						${{ [property]: o[1] }}
-					}
-				`,
-		)
-	}
-}
-
-// export const mapObject = (obj: any, key: string) => {
-//   obj.map(o => o)
-// }
 
 export const grid: GridProps = (
 	rows: string = '12',
