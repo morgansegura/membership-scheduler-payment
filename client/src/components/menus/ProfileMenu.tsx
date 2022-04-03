@@ -10,14 +10,22 @@ import {
   MenuItem,
   Menu,
   Tooltip,
-  Avatar,
   Divider,
   ListItemIcon,
+  Avatar,
+  useTheme,
 } from '@mui/material'
+import SettingsAccessibilityOutlinedIcon from '@mui/icons-material/SettingsAccessibilityOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
 import PersonAdd from '@mui/icons-material/PersonAdd'
-import Settings from '@mui/icons-material/Settings'
-import Logout from '@mui/icons-material/Logout'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
+import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined'
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined'
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
+import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined'
 
 type Props = {
   children?: React.ReactChild | React.ReactChild[]
@@ -25,6 +33,7 @@ type Props = {
 
 const ProfileMenu: React.FC<Props> = ({ children }) => {
   const { getStorage } = useStorage()
+  const theme = useTheme()
   const [user, setUser] = React.useState(Boolean(getStorage('user')))
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -72,26 +81,47 @@ const ProfileMenu: React.FC<Props> = ({ children }) => {
         PaperProps={{
           elevation: 0,
           sx: {
+            minWidth: 250,
             overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
+            boxShadow: theme.shadows[24],
+            my: 0,
+            fontWeight: 700,
+            py: 2.5,
+            px: 2,
+            '& .MuiList-root': {
+              p: 0,
             },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
+            '& .MuiMenuItem-root': {
+              display: 'flex',
+              alignItems: 'center',
+              px: 1,
+              fontWeight: 600,
+              // cursor: 'pointer',
+              color: theme.palette.grey[600],
+              transition: `background-color 0.3s ${theme.transitions.easing.easeOut}, color 0.3s ${theme.transitions.easing.easeOut}`,
+              '& .MuiSvgIcon-root': {
+                transition: `background-color 0.3s ${theme.transitions.easing.easeOut}, fill 0.3s ${theme.transitions.easing.easeOut}`,
+              },
+            },
+            '& .MuiMenuItem-root:hover': {
+              color: theme.palette.grey[900],
+              borderRadius: 1,
+              '& .MuiSvgIcon-root': {
+                backgroundColor: theme.palette.primary.main,
+                fill: theme.palette.common.white,
+              },
+            },
+            '& .MuiSvgIcon-root': {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 37,
+              height: 37,
+              p: 1,
+              mr: 2.5,
+              backgroundColor: theme.palette.grey[200],
+              borderRadius: 1,
+              fill: theme.palette.grey[600],
             },
           },
         }}
@@ -99,30 +129,36 @@ const ProfileMenu: React.FC<Props> = ({ children }) => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          <BadgeOutlinedIcon fontSize="small" /> Profile
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <AccountCircleOutlinedIcon fontSize="small" /> My account
         </MenuItem>
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
+            <BuildCircleOutlinedIcon fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
         <ToggleColorMode />
         <MenuItem>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <LogoutOutlinedIcon fontSize="small" />
           </ListItemIcon>
-          Logout
+          Signout
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <LoginOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          Signin
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <ExitToAppOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          Register
         </MenuItem>
       </Menu>
     </>

@@ -46,15 +46,18 @@ function ScrollTop(props: ScrollTopProps) {
   )
 }
 
-interface BaseLayoutProps {}
+interface BaseLayoutProps {
+  children: React.ReactElement
+}
 
 const BaseLayout: React.FC<BaseLayoutProps> = props => {
   return (
     <>
       <Header />
 
-      <Container sx={{ pt: '80px' }}>
-        <Box sx={{ my: 2 }}>
+      <Container sx={{ pt: 25 }}>
+        {props.children}
+        {/* <Box sx={{ my: 2 }}>
           {[...new Array(50)]
             .map(
               () => `Cras mattis consectetur purus sit amet fermentum.
@@ -63,7 +66,7 @@ Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
             )
             .join('\n')}
-        </Box>
+        </Box> */}
         <ScrollTop {...props}>
           <Fab color="secondary" size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />

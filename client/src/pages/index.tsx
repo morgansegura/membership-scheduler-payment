@@ -1,6 +1,6 @@
 import React from 'react'
 // [Comonents]
-import { BaseLayout, HeadContent, RoleGuardLayout } from 'components'
+import { AuthorCard, BaseLayout, HeadContent, RoleGuardLayout } from 'components'
 // [Utils]
 import { siteMetadata } from 'utils'
 
@@ -17,7 +17,7 @@ const Home: React.FC<Props> = () => {
         canonicalUrl={`${siteMetadata.siteUrl}/`}
       />
       <BaseLayout>
-        <p>The Base layout is on the home page</p>
+        {/* <p>The Base layout is on the home page</p>
         <RoleGuardLayout level="guest">
           <h1>Guest level html</h1>
         </RoleGuardLayout>
@@ -29,7 +29,9 @@ const Home: React.FC<Props> = () => {
         </RoleGuardLayout>
         <RoleGuardLayout level="admin">
           <h1>Admin level html</h1>
-        </RoleGuardLayout>
+        </RoleGuardLayout> */}
+        <AuthorCard />
+        {/* <PostCard /> */}
       </BaseLayout>
     </>
   )

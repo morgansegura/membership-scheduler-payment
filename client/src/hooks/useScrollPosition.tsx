@@ -12,8 +12,6 @@ function useScrollPosition(props?: ScrollPositionProps) {
 
     handleScroll()
 
-    console.log(scrollY)
-
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)

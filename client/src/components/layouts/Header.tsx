@@ -18,7 +18,9 @@ import {
   Toolbar,
   useScrollTrigger,
 } from '@mui/material'
-import StadiumIcon from '@mui/icons-material/Stadium'
+
+import { useTheme } from '@mui/material/styles'
+import { Ball, Goal } from 'components'
 
 Router.events.on('routeChangeStart', NProgress.start)
 Router.events.on('routeChangeError', NProgress.done)
@@ -32,10 +34,11 @@ interface HideOnScrollProps {
 function HideOnScroll(props: HideOnScrollProps) {
   const { children, window } = props
   const pos = useScrollPosition()
+  const theme = useTheme()
 
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
-    threshold: 100,
+    threshold: 300,
   })
 
   return (
@@ -45,19 +48,25 @@ function HideOnScroll(props: HideOnScrollProps) {
         justifyContent="center"
         sx={{
           position: 'fixed',
-          px: 1,
-          pt: 1,
+          px: 2,
+          pt: 2,
           width: '100%',
         }}
       >
         <AppBar
           color="inherit"
           sx={{
-            background: 'rgba(255,255,255,0.90)',
-            backdropFilter: 'blur(3px)',
-            boxShadow: trigger ? 5 : 0,
+            backgroundColor:
+              theme.palette.mode === 'light'
+                ? pos > 30
+                  ? 'rgba(255,255,255,.80)'
+                  : `rgba(${theme.palette.common.white}, 1)`
+                : pos > 30
+                ? 'rgba(24, 24, 27, 0.70)'
+                : 'rgba(24, 24, 27, 1)',
+            backdropFilter: 'blur(5px)',
+            boxShadow: pos > 20 ? theme.shadows[24] : 'none',
             overflow: 'hidden',
-            borderRadius: 3,
             width: '100%',
             maxWidth: 2256,
             position: 'relative',
@@ -88,6 +97,7 @@ const Header: React.FC<HeaderProps> = props => {
               href="/"
               underline="none"
               color="inherit"
+              fontSize="medium"
               sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -95,14 +105,7 @@ const Header: React.FC<HeaderProps> = props => {
                 fontWeight: 700,
               }}
             >
-              <IconButton
-                onClick={() => console.log('logo clicked')}
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-              >
-                <StadiumIcon />
-              </IconButton>
+              <Ball />
               {siteMetadata.companyName}
             </Link>
             <ProfileMenu />
