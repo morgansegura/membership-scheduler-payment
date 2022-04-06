@@ -1,77 +1,37 @@
-import styled from 'styled-components'
-import * as style from 'styles/config/utilities'
+import styled from '@emotion/styled'
+import { Theme } from 'styles/config/interfaces/Theme'
 
-interface NavItemProps {
-  // active?: boolean
-  // theme?: any
-}
-
-export const Header = styled.div`
-  /* position: relative;
-  z-index: 2;
-  background-color: ${props => props.theme.header.bgcolor};
-  margin-top: ${style.sp['3']};
-  margin-bottom: ${style.sp['2.5']};
-  ${style.radius['md']};
-  padding: 0 ${style.sp['6']};
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  ${style.media['lg']`
-		padding-right: ${style.sp['4']};
-		padding-left: ${style.sp['4']};
-	`}
-
-  ${style.media['xl']`
-		padding-right: ${style.sp['6']};
-		padding-left: ${style.sp['6']};
-	`}
-
-	${style.media['xxl']`
-		padding-right: ${style.sp['8']};
-		padding-left: ${style.sp['8']};
-	`}
-
-	a {
+export const StyledHeader = styled.div`
+  .HeaderContainer-root {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  .HeaderLogo-root {
     text-decoration: none;
-    line-height: 0;
-    transition: color 0.3s ease-out;
-
-    &:hover {
-      color: ${props => props.theme.button.bgcolorForm};
-    }
-  } */
+  }
 `
-export const Menu = styled.div`
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex: 1 0 auto; */
-`
-export const Logo = styled.div`
-  /* ${style.fontSizing('14px', '28px', 700)}
-  letter-spacing: 0.0523em;
-  text-transform: uppercase;
-  color: ${props => props.theme.colors.panel[90]}; */
-`
-export const Nav = styled.nav`
-  /* display: flex;
-  align-items: center;
-  justify-self: flex-end;
-  grid-gap: ${style.sp['5']}; */
-`
-export const NavItem = styled.span`
-  /* cursor: pointer;
-  ${style.fontSizing('12px', '20px', 600)}
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: ${style.colors.slate700};
-
-  ${(props: NavItemProps) =>
-    props.active &&
-    `
-        color: ${props.theme.button.bgcolorForm};
-    `}; */
+export const StyledAppBar = styled.div`
+  .AppBarContainer-root {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1rem 0 1rem;
+  }
+  .AppBar-root {
+    z-index: 1200;
+    color: ${(props: Theme) => props.theme.palette.text.primary};
+    transition: box-shadow 0.3s ${(props: Theme) => props.theme.transitions.easing.easeOut};
+    overflow: hidden;
+    width: 100%;
+    max-width: 2256px;
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    border-radius: 1rem;
+    box-sizing: border-box;
+  }
 `

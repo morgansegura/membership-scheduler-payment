@@ -7,6 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ListItemIcon, MenuItem } from '@mui/material'
 import Brightness4OutlinedIcon from '@mui/icons-material/Brightness4Outlined'
 import Brightness7OutlinedIcon from '@mui/icons-material/Brightness7Outlined'
+import { inherits } from 'util'
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
@@ -65,7 +66,7 @@ const ThemesProvider: React.FC<ThemesProviderProps> = ({ children }) => {
                 },
                 text: {
                   primary: '#18181b',
-                  secondary: '#52525b',
+                  secondary: 'rgb(82, 82, 91)',
                 },
                 primary: {
                   main: '#f43f5e',
@@ -164,10 +165,30 @@ const ThemesProvider: React.FC<ThemesProviderProps> = ({ children }) => {
           fontSize: 16,
           subtitle1: {
             fontFamily: 'Source Sans Pro',
+            fontSize: '1rem',
+            lineHeight: '1rem',
+            fontWeight: 600,
+            color: theme.palette.text.secondary,
+          },
+          subtitle2: {
+            fontFamily: 'Source Sans Pro',
+            fontSize: '0.75rem',
+            lineHeight: '1.25em',
+            fontWeight: 600,
+            color: theme.palette.text.secondary,
           },
           button: {
             fontFamily: 'Merriweather Sans',
             lineHeight: 1.34,
+          },
+        },
+        breakpoints: {
+          values: {
+            xs: 0,
+            sm: 640,
+            md: 1024,
+            lg: 1376,
+            xl: 1800,
           },
         },
         shadows: [...theme.shadows],
@@ -178,6 +199,8 @@ const ThemesProvider: React.FC<ThemesProviderProps> = ({ children }) => {
           MuiAppBar: {
             styleOverrides: {
               root: {
+                color: 'inherit',
+                backgroundColor: 'inherit',
                 borderRadius: 16,
               },
             },

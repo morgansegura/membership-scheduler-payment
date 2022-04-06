@@ -55,9 +55,9 @@ const BaseLayout: React.FC<BaseLayoutProps> = props => {
     <>
       <Header />
 
-      <Container sx={{ pt: 25 }}>
+      <Container sx={{ pt: '7.5rem', maxWidth: 'xl' }}>
         {props.children}
-        {/* <Box sx={{ my: 2 }}>
+        <Box sx={{ my: 2 }}>
           {[...new Array(50)]
             .map(
               () => `Cras mattis consectetur purus sit amet fermentum.
@@ -66,7 +66,7 @@ Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
             )
             .join('\n')}
-        </Box> */}
+        </Box>
         <ScrollTop {...props}>
           <Fab color="secondary" size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />

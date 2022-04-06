@@ -20,7 +20,8 @@ import {
 } from '@mui/material'
 
 import { useTheme } from '@mui/material/styles'
-import { Ball, Goal } from 'components'
+import { StyledAppBar, StyledHeader } from 'styles/Header'
+import { Ball } from 'components'
 
 Router.events.on('routeChangeStart', NProgress.start)
 Router.events.on('routeChangeError', NProgress.done)
@@ -35,84 +36,80 @@ function HideOnScroll(props: HideOnScrollProps) {
   const { children, window } = props
   const pos = useScrollPosition()
   const theme = useTheme()
+  const [color, setColor] = React.useState('')
 
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     threshold: 300,
   })
 
+  React.useEffect(() => {
+    const dynamicColor = () => {
+      if (theme.palette.mode === 'light') {
+        if (pos > 30) {
+          setColor('rgba(255,255,255,.80)')
+        } else {
+          setColor('rgba(255, 255, 255, 1)')
+        }
+      } else {
+        if (pos > 30) {
+          setColor('rgba(39, 39, 42, 0.95)')
+        } else {
+          setColor('rgba(39, 39, 42, 1)')
+        }
+      }
+      console.log(theme.palette.mode)
+    }
+    dynamicColor()
+  }, [pos, theme.palette.mode, color])
+
   return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      <Box
-        display="flex"
-        justifyContent="center"
-        sx={{
-          position: 'fixed',
-          px: 2,
-          pt: 2,
-          width: '100%',
-        }}
-      >
-        <AppBar
-          color="inherit"
-          sx={{
-            backgroundColor:
-              theme.palette.mode === 'light'
-                ? pos > 30
-                  ? 'rgba(255,255,255,.80)'
-                  : `rgba(${theme.palette.common.white}, 1)`
-                : pos > 30
-                ? 'rgba(24, 24, 27, 0.70)'
-                : 'rgba(24, 24, 27, 1)',
-            backdropFilter: 'blur(5px)',
-            boxShadow: pos > 20 ? theme.shadows[24] : 'none',
-            overflow: 'hidden',
-            width: '100%',
-            maxWidth: 2256,
-            position: 'relative',
-          }}
-        >
-          {children}
-        </AppBar>
-      </Box>
-    </Slide>
+    <StyledAppBar theme={theme}>
+      <Slide appear={false} direction="down" in={!trigger}>
+        <div className="AppBarContainer-root">
+          <div
+            className="AppBar-root"
+            style={{
+              backgroundColor: color,
+              boxShadow: pos > 20 ? theme.shadows[24] : 'none',
+            }}
+          >
+            {children}
+          </div>
+        </div>
+      </Slide>
+    </StyledAppBar>
   )
 }
 
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = props => {
+  const theme = useTheme()
   return (
-    <>
+    <StyledHeader theme={theme}>
       <HideOnScroll {...props}>
-        <Toolbar>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            spacing={2}
-            width={'100%'}
+        <div className="HeaderContainer-root">
+          <Link
+            className="HeaderLogo-root"
+            href="/"
+            underline="none"
+            color="inherit"
+            fontSize="medium"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+            }}
           >
-            <Link
-              href="/"
-              underline="none"
-              color="inherit"
-              fontSize="medium"
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                textTransform: 'uppercase',
-                fontWeight: 700,
-              }}
-            >
-              <Ball />
-              {siteMetadata.companyName}
-            </Link>
-            <ProfileMenu />
-          </Stack>
-        </Toolbar>
+            <Ball />
+            {siteMetadata.companyName}
+          </Link>
+          <ProfileMenu />
+        </div>
       </HideOnScroll>
-    </>
+    </StyledHeader>
   )
 }
 

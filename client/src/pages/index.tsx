@@ -1,6 +1,6 @@
 import React from 'react'
 // [Comonents]
-import { AuthorCard, BaseLayout, HeadContent, RoleGuardLayout } from 'components'
+import { AuthorCard, PostCard, BaseLayout, HeadContent, RoleGuardLayout } from 'components'
 // [Utils]
 import { siteMetadata } from 'utils'
 
@@ -31,7 +31,7 @@ const Home: React.FC<Props> = () => {
           <h1>Admin level html</h1>
         </RoleGuardLayout> */}
         <AuthorCard />
-        {/* <PostCard /> */}
+        <PostCard />
       </BaseLayout>
     </>
   )

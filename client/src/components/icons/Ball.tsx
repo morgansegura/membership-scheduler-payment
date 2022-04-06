@@ -10,10 +10,19 @@ const Ball: React.FC<BallProps> = () => {
   const pos = useScrollPosition()
 
   const src = pos > 30 ? 'ball.png' : 'ball.gif'
-  const width = pos > 30 ? '45px' : '55px'
+  const width = pos > 30 ? '55px' : '55px'
+  const pad = pos > 30 ? '5px' : ''
 
   return (
-    <div style={{ position: 'relative', width: width, display: 'flex', marginRight: '15px' }}>
+    <div
+      style={{
+        position: 'relative',
+        width: width,
+        display: 'flex',
+        marginRight: '15px',
+        padding: pad,
+      }}
+    >
       {theme.palette.mode === 'dark' ? (
         <img
           style={{
