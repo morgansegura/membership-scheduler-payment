@@ -437,3 +437,18 @@ export const fadeSlideOutBottom = keyframes`
         opacity: 0;
     }
 `
+
+export const rippleEffect = keyframes`
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(10);
+    opacity: 0.375;
+  }
+  100% {
+    transform: scale(35);
+    opacity: 0;
+  }
+`

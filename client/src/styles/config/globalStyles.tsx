@@ -1,6 +1,7 @@
 import 'normalize.css'
 import { css } from 'styled-components'
 import * as style from 'styles/config/utilities'
+import { ThemeInterface, ThemeTypes } from 'styles/Theme'
 
 const nprogress = css`
   #nprogress {
@@ -8,8 +9,7 @@ const nprogress = css`
   }
 
   #nprogress .bar {
-    background: ${props => props.theme.pallette.secondary.dark};
-
+    background: ${(props: any) => props.theme.palette.secondary.dark};
     position: fixed;
     z-index: 1031;
     top: 0;
@@ -26,10 +26,8 @@ const nprogress = css`
     right: 0px;
     width: 100px;
     height: 100%;
-    box-shadow: 0 0 10px ${props => props.theme.pallette.secondary.dark},
-      0 0 5px ${props => props.theme.pallette.secondary.light};
+    box-shadow: 0 0 10px ${props => props.theme.palette.secondary.dark}
     opacity: 1;
-
     -webkit-transform: rotate(3deg) translate(0px, -4px);
     -ms-transform: rotate(3deg) translate(0px, -4px);
     transform: rotate(3deg) translate(0px, -4px);
@@ -50,8 +48,8 @@ const nprogress = css`
     box-sizing: border-box;
 
     border: solid 2px transparent;
-    border-top-color: ${props => props.theme.pallette.secondary.dark};
-    border-left-color: ${props => props.theme.pallette.secondary.dark};
+    border-top-color: ${props => props.theme.palette.secondary.dark};
+    border-left-color: ${props => props.theme.palette.secondary.dark};
     border-radius: 50%;
 
     -webkit-animation: nprogress-spinner 400ms linear infinite;
@@ -87,167 +85,161 @@ const nprogress = css`
 `
 
 export const GlobalStyle = css`
-  html,
-  body {
-    padding: 0;
-    margin: 0;
-    font-size: ${style.sp['4']};
-    background-color: ${props =>
-      props.theme.pallette.mode === 'light'
-        ? props.theme.pallette.grey[50]
-        : props.theme.pallette.grey[900]};
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    color: ${props =>
-      props.theme.pallette.mode === 'light'
-        ? props.theme.pallette.common.black
-        : props.theme.pallette.common.white};
-  }
+	html,
+	body {
+		padding: 0;
+		margin: 0;
+		font-family: ${props => props.theme.typography.fontFamilySans1};
+		font-size: ${props => props.theme.typography.fontSize};
+		background-color: ${props => props.theme.palette.background.default};
+		-webkit-text-size-adjust: 100%;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		color: ${props => props.theme.palette.text.primary};
+	}
 
-  div,
-  span,
-  applet,
-  object,
-  iframe,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  blockquote,
-  pre,
-  a,
-  abbr,
-  acronym,
-  address,
-  big,
-  cite,
-  code,
-  del,
-  dfn,
-  em,
-  img,
-  ins,
-  kbd,
-  q,
-  s,
-  samp,
-  small,
-  strike,
-  strong,
-  sub,
-  sup,
-  tt,
-  var,
-  b,
-  u,
-  i,
-  center,
-  dl,
-  dt,
-  dd,
-  ol,
-  ul,
-  li,
-  fieldset,
-  form,
-  label,
-  legend,
-  table,
-  caption,
-  tbody,
-  tfoot,
-  thead,
-  tr,
-  th,
-  td,
-  article,
-  aside,
-  canvas,
-  details,
-  embed,
-  figure,
-  figcaption,
-  footer,
-  header,
-  hgroup,
-  menu,
-  nav,
-  output,
-  ruby,
-  section,
-  summary,
-  time,
-  mark,
-  audio,
-  video {
-    font-family: ${style.font.family.sans};
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    padding: 0;
-    margin: 0;
-  }
+	div,
+	span,
+	applet,
+	object,
+	iframe,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	blockquote,
+	pre,
+	a,
+	abbr,
+	acronym,
+	address,
+	big,
+	cite,
+	code,
+	del,
+	dfn,
+	em,
+	img,
+	ins,
+	kbd,
+	q,
+	s,
+	samp,
+	small,
+	strike,
+	strong,
+	sub,
+	sup,
+	tt,
+	var,
+	b,
+	u,
+	i,
+	center,
+	dl,
+	dt,
+	dd,
+	ol,
+	ul,
+	li,
+	fieldset,
+	form,
+	label,
+	legend,
+	table,
+	caption,
+	tbody,
+	tfoot,
+	thead,
+	tr,
+	th,
+	td,
+	article,
+	aside,
+	canvas,
+	details,
+	embed,
+	figure,
+	figcaption,
+	footer,
+	header,
+	hgroup,
+	menu,
+	nav,
+	output,
+	ruby,
+	section,
+	summary,
+	time,
+	mark,
+	audio,
+	video {
+		-webkit-text-size-adjust: 100%;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		padding: 0;
+		margin: 0;
+	}
 
-  h1 {
-    ${style.h1};
-  }
+	h1 {
+		${props => props.theme.typography.h1}
+	}
 
-  h2 {
-    ${style.h2};
-  }
+	h2 {
+		${props => props.theme.typography.h2}
+	}
 
-  h3 {
-    ${style.h3};
-  }
+	h3 {
+		${props => props.theme.typography.h3}
+	}
 
-  h4 {
-    ${style.h4};
-  }
+	h4 {
+		${props => props.theme.typography.h4}
+	}
 
-  h5 {
-    ${style.h5};
-  }
+	h5 {
+		${props => props.theme.typography.h5}
+	}
 
-  label {
-    ${style.label};
-  }
+	label {
+		${props => props.theme.typography.body2}
+	}
 
-  img {
-    width: 100%;
-  }
+	img {
+		width: 100%;
+	}
 
-  input,
-  select {
-    /* all: unset !important; */
-    &:-internal-autofill-selected {
-      /* appearance: none !important;
+	input,
+	select {
+		/* all: unset !important; */
+		&:-internal-autofill-selected {
+			/* appearance: none !important;
       background-color: transparent !important;
       background-image: none !important;
       color: transparent !important; */
-    }
-  }
+		}
+	}
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
-  }
+	input:-webkit-autofill,
+	input:-webkit-autofill:focus {
+		transition: background-color 600000s 0s, color 600000s 0s;
+	}
 
-  a {
-    text-decoration: none;
-  }
+	a {
+		text-decoration: none;
+	}
 
-  :root {
-    --grid-gutter: ${style.sp['2']};
+	:root {
+		--grid-gutter: ${style.sp['2']};
 
-    ${style.media.md`
+		${style.media.md`
 			--grid-gutter: ${style.sp['3']};
 		`}
 
-    ${style.media.xl`
+		${style.media.xl`
 			--grid-gutter: ${style.sp['4']};
 		`}
 
@@ -258,7 +250,7 @@ export const GlobalStyle = css`
 		${style.above(style.contain['offset'])`
 			--grid-gutter: ${style.sp['4']};
 		`}
-  }
+	}
 
-  ${nprogress}
+	${nprogress}
 `

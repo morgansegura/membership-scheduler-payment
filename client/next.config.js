@@ -1,6 +1,5 @@
-module.exports -
-    {
-        experimental: {
-            styledComponents: true,
-        },
-    }
+module.exports = {
+	compiler: {
+		styledComponents: true,
+	},
+}

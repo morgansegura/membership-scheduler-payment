@@ -1,277 +1,172 @@
 import styled, { css } from 'styled-components'
 import * as style from 'styles/config/utilities'
-import { rgba, darken, lighten, readableColor } from 'polished'
+import { rgba, rem, readableColor } from 'polished'
 
-export const Button = styled(props => props.as)`
-  position: relative;
-  z-index: 1;
-  word-break: break-word;
-  max-width: 100%;
-  cursor: pointer;
-  align-items: center;
-  letter-spacing: 0.03857em;
-  /* letter-spacing: -0.006em; */
-  text-transform: uppercase;
-  border: 1px solid transparent;
-  transition: border-color 0.3s ease-out, color 0.3s ease-out, background-color 0.3s ease-out;
+export const StyledButton = styled(props => props.as)`
+	position: relative;
+	z-index: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+	outline: 0px;
+	border: 0px;
+	margin: 0px;
+	cursor: pointer;
+	user-select: none;
+	vertical-align: middle;
+	appearance: none;
+	text-decoration: none;
+	font-weight: 600;
+	line-height: 1.75;
+	letter-spacing: 0.02857em;
+	border-radius: ${rem(4)};
+	text-transform: uppercase;
+	min-width: ${rem(64)};
+	padding: 0;
+	box-shadow: ${props => props.theme.shadows[1]};
+	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+		border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+		color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
-  &:hover {
-  }
-  &:active {
-  }
-
-  /* [Radius] */
-  ${props =>
-    props.radius === 'base'
-      ? css`
-          ${style.radius.base}
-        `
-      : props.radius === 'sm'
-      ? css`
-          ${style.radius.sm}
-        `
-      : props.radius === 'md'
-      ? css`
-          ${style.radius.md}
-        `
-      : props.radius === 'lg'
-      ? css`
-          ${style.radius.lg}
-        `
-      : props.radius === 'xl'
-      ? css`
-          ${style.radius.xl}
-        `
-      : props.radisu === '2xl'
-      ? css`
-          ${style.radius['2xl']}
-        `
-      : props.radius === '3xl'
-      ? css`
-          ${style.radius['3xl']}
-        `
-      : props.radius === 'circle'
-      ? css`
-          ${style.radius.circle}
-        `
-      : css`
-          ${style.radius['none']}
-        `}
-
-  ${props =>
-    props.inline
-      ? css`
-          display: inline-flex;
-        `
-      : css`
-          display: flex;
-        `}
-
+	&:hover {
+		box-shadow: ${props => props.theme.shadows[4]};
+	}
 	/* [Size] */
-
 	${props =>
-    props.size === 'xs'
-      ? css`
-          ${style.fontSizing('14px', '20px', 500)};
-          padding: ${style.sp['2.5']} ${style.sp['3']};
-        `
-      : props.size === 'sm'
-      ? css`
-          ${style.fontSizing('16px', '20px', 500)};
-          padding: ${style.sp['2.5']} ${style.sp['3']};
-        `
-      : props.size === 'md'
-      ? css`
-          ${style.fontSizing('18px', '36px', 900)};
-          padding: ${style.sp['1.5']} ${style.sp['3']};
-        `
-      : props.size === 'lg'
-      ? css`
-          ${style.fontSizing('22px', '44px', 900)};
-          padding: 0 ${style.sp['3']};
-        `
-      : props.size === 'xl'
-      ? css`
-          ${style.fontSizing('26px', '20px', 500)};
-          padding: ${style.sp['2.5']} ${style.sp['3']};
-        `
-      : css`
-          ${style.fontSizing('13px', '26px', 600)};
-          padding: ${style.sp['2']} ${style.sp['4']};
-        `}
-
+		props.size && props.size === 'small'
+			? css`
+					font-size: 0.8125rem;
+					& .ButtonInner-root {
+						padding: 4px 10px;
+					}
+			  `
+			: props.size && props.size === 'medium'
+			? css`
+					font-size: 0.875rem;
+					& .ButtonInner-root {
+						padding: 6px 16px;
+					}
+			  `
+			: props.size && props.size === 'large'
+			? css`
+					font-size: 0.9375rem;
+					& .ButtonInner-root {
+						padding: 8px 22px;
+					}
+			  `
+			: css`
+					font-size: 0.875rem;
+					& .ButtonInner-root {
+						padding: 6px 16px;
+					}
+			  `};
 
 	/* [Color] */
-    ${props =>
-    props.themed === 'form'
-      ? css`
-          /* background-color: ${props.theme.button.bgcolorForm};
-          color: ${readableColor(
-            props.theme.button.bgcolorForm,
-            style.colors.slate900,
-            style.colors.slate100,
-          )}; */
+	${props =>
+		props.color && props.color === 'primary'
+			? css`
+					background-color: ${props => props.theme.palette.primary.main};
+					color: ${props =>
+						readableColor(props.theme.palette.primary.main, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					&:hover,
+					&:active {
+						background-color: ${props => props.theme.palette.primary.dark};
+						color: ${props =>
+							readableColor(props.theme.palette.primary.dark, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					}
+			  `
+			: props.color && props.color === 'secondary'
+			? css`
+					background-color: ${props => props.theme.palette.secondary.main};
+					color: ${props =>
+						readableColor(
+							props.theme.palette.secondary.contrastText,
+							'#fff',
+							'rgba(0, 0, 0, 0.87)',
+						)};
+					&:hover,
+					&:active {
+						background-color: ${props => props.theme.palette.secondary.dark};
+						color: ${props =>
+							readableColor(props.theme.palette.secondary.dark, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					}
+			  `
+			: props.color && props.color === 'error'
+			? css`
+					background-color: ${props => props.theme.palette.error.main};
+					color: ${props =>
+						readableColor(props.theme.palette.error.main, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					&:hover,
+					&:active {
+						background-color: ${props => props.theme.palette.error.dark};
+						color: ${props =>
+							readableColor(props.theme.palette.error.dark, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					}
+			  `
+			: props.color && props.color === 'success'
+			? css`
+					background-color: ${props => props.theme.palette.success.main};
+					color: ${props =>
+						readableColor(props.theme.palette.success.main, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					&:hover,
+					&:active {
+						background-color: ${props => props.theme.palette.success.dark};
+						color: ${props =>
+							readableColor(props.theme.palette.success.dark, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					}
+			  `
+			: props.color && props.color === 'info'
+			? css`
+					background-color: ${props => props.theme.palette.info.main};
+					color: ${props =>
+						readableColor(props.theme.palette.info.main, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					&:hover,
+					&:active {
+						background-color: ${props => props.theme.palette.info.dark};
+						color: ${props =>
+							readableColor(props.theme.palette.info.dark, '#fff', 'rgba(0, 0, 0, 0.87)')};
+					}
+			  `
+			: ``};
+	/* [Size] */
+	${props =>
+		props.variant && props.variant === 'small'
+			? css`
+					font-size: 0.8125rem;
+					& .ButtonInner-root {
+						padding: 4px 10px;
+					}
+			  `
+			: props.variant && props.variant === 'medium'
+			? css`
+					font-size: 0.875rem;
+					& .ButtonInner-root {
+						padding: 6px 16px;
+					}
+			  `
+			: props.variant && props.variant === 'large'
+			? css`
+					font-size: 0.9375rem;
+					& .ButtonInner-root {
+						padding: 8px 22px;
+					}
+			  `
+			: ``};
 
-          /* &:hover {
-            background-color: ${darken(0.05, props.theme.button.bgcolorForm)};
-            color: ${readableColor(
-            darken(0.05, props.theme.button.bgcolorForm),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          }
-          &:active {
-            background-color: ${darken(0.9, props.theme.button.bgcolorForm)};
-            color: ${readableColor(
-            darken(0.9, props.theme.button.bgcolorForm),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          }
-          &:disabled {
-            background-color: ${rgba(props.theme.button.bgcolorPrimary, 0.5)};
-            color: ${readableColor(
-            rgba(props.theme.button.bgcolorForm, 0.5),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          } */
-        `
-      : props.themed === 'primary'
-      ? css`
-          /* background-color: ${props.theme.button.bgcolorPrimary};
-          color: ${readableColor(
-            props.theme.button.bgcolorPrimary,
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-
-          &:hover {
-            background-color: ${darken(0.05, props.theme.button.bgcolorPrimary)};
-            color: ${readableColor(
-            darken(0.05, props.theme.button.bgcolorPrimary),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          }
-          &:active {
-            background-color: ${darken(0.09, props.theme.button.bgcolorPrimary)};
-            color: ${readableColor(
-            darken(0.09, props.theme.button.bgcolorPrimary),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          }
-          &:disabled {
-            background-color: ${rgba(props.theme.button.bgcolorPrimary, 0.5)};
-            color: ${readableColor(
-            rgba(props.theme.button.bgcolorPrimary, 0.5),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          } */
-        `
-      : props.themed === 'secondary'
-      ? css`
-          /* background-color: ${props.theme.button.bgcolorSecondary};
-          color: ${readableColor(
-            props.theme.button.bgcolorSecondary,
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-
-          &:hover {
-            background-color: ${darken(0.05, props.theme.button.bgcolorSecondary)};
-            color: ${readableColor(
-            darken(0.05, props.theme.button.bgcolorSecondary),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          }
-          &:active {
-            background-color: ${darken(0.9, props.theme.button.bgcolorSecondary)};
-            color: ${readableColor(
-            darken(0.9, props.theme.button.bgcolorSecondary),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          }
-          &:disabled {
-            background-color: ${rgba(props.theme.button.bgcolorSecondary, 0.5)};
-            color: ${readableColor(
-            rgba(props.theme.button.bgcolorSecondary, 0.5),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          } */
-        `
-      : css`
-          /* background-color: ${props.theme.button.bgcolorDefault};
-          color: ${readableColor(
-            props.theme.button.bgcolorDefault,
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-
-          &:hover {
-            background-color: ${darken(0.05, props.theme.button.bgcolorDefault)};
-            color: ${readableColor(
-            darken(0.05, props.theme.button.bgcolorDefault),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          }
-          &:active {
-            background-color: ${darken(0.25, props.theme.button.bgcolorDefault)};
-            color: ${readableColor(
-            darken(0.25, props.theme.button.bgcolorDefault),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          }
-          &:disabled {
-            background-color: ${darken(0.25, props.theme.button.bgcolorDefault)};
-            color: ${readableColor(
-            darken(0.25, props.theme.button.bgcolorDefault),
-            style.colors.slate900,
-            style.colors.slate100,
-          )};
-          } */
-        `}
-
-	${({ loading }) =>
-    loading === true &&
-    css`
-      pointer-events: none;
-    `}
-
-	${({ disabled }) =>
-    disabled === true &&
-    css`
-      pointer-events: none;
-      background-color: ${style.colors.slate100};
-      border: 1px solid transparent;
-      color: ${style.colors.slate900};
-    `}
-
-	${({ outline }) =>
-    outline
-      ? css`
-          background-color: transparent;
-        `
-      : css``}
-
-	${({ important }) =>
-    important
-      ? css`
-          text-transform: uppercase;
-          letter-spacing: 0.02857em;
-        `
-      : css``}
+	&:disabled {
+		box-shadow: none;
+		pointer-events: none;
+		cursor: default;
+		color: ${props => props.theme.palette.action.disabled};
+		background-color: ${props => props.theme.palette.action.disabledBackground};
+	}
 `
 
 export const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${style.sp['1.5']};
+	display: flex;
+	align-items: center;
+	gap: ${style.sp['1.5']};
 `

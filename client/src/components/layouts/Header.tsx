@@ -4,6 +4,7 @@ import { Router, useRouter } from 'next/router'
 import NProgress from 'nprogress'
 // [Components]
 import { Navigation } from 'components/layouts'
+import { AppBar } from 'components/core'
 // [Data]
 import { siteMetadata } from 'utils'
 // [Styles]
@@ -17,22 +18,22 @@ Router.events.on('routeChangeComplete', NProgress.done)
 type Props = {}
 
 const Header: React.FC<Props> = () => {
-  return (
-    <Container>
-      <HeaderWrapper>
-        <Menu>
-          <Link href="/">
-            <a>
-              <Logo>{siteMetadata.companyName}</Logo>
-            </a>
-          </Link>
-          <Nav>
-            <Navigation />
-          </Nav>
-        </Menu>
-      </HeaderWrapper>
-    </Container>
-  )
+	return (
+		<Container>
+			<AppBar>
+				<Menu>
+					<Link href="/">
+						<a>
+							<Logo>{siteMetadata.companyName}</Logo>
+						</a>
+					</Link>
+					<Nav>
+						<Navigation />
+					</Nav>
+				</Menu>
+			</AppBar>
+		</Container>
+	)
 }
 
 export default Header

@@ -3,7 +3,6 @@ import React from 'react'
 import { Base, HeadContent, RoleGuardLayout } from 'components'
 // [Utils]
 import { siteMetadata } from 'utils'
-import { Box } from 'components/core'
 
 type Props = {
 	user: any
@@ -31,86 +30,6 @@ const Home: React.FC<Props> = () => {
 				<RoleGuardLayout level="admin">
 					<h1>Admin level html</h1>
 				</RoleGuardLayout>
-				<Box
-					// border={'1px solid primary.dark'}
-					borderRadius={{ xs: 5, sm: '20px' }}
-					boxShadow={{ xs: 5 }}
-					// displayPrint={}
-					// displayRaw={}
-					// alignContent={}
-					// alignItems={}
-					// alignSelf={}
-					// flex={}
-					// flexDirection={}
-					// flexGrow={}
-					// flexShrink={}
-					// flexWrap={}
-					// justifyContent={}
-					// order={}
-					// gap={}
-					// columnGap={}
-					// rowGap={}
-					// gridColumn={}
-					// gridRow={}
-					// gridAutoFlow={}
-					// gridAutoColumns={}
-					// gridAutoRows={}
-					// gridTemplateColumns={}
-					// gridTemplateRows={}
-					// gridTemplateAreas={}
-					// gridArea={}
-					// bgColor={}
-					// color={}
-					// bottom={}
-					// left={}
-					// position={}
-					// right={}
-					// top={}
-					// zIndex={}
-					// height={}
-					// maxHeight={}
-					// minHeight={}
-					// maxWidth={}
-					// minWidth={}
-					// width={}
-					// boxSizing={}
-					// m={}
-					// mb={}
-					// ml={}
-					// mr={}
-					// mt={}
-					// mx={}
-					// my={}
-					// marginInline={}
-					// marginInlineStart={}
-					// marginInlineEnd={}
-					// marginBlock={}
-					// marginBlockStart={}
-					// marginBlockEnd={}
-					p={{ xs: 1 }}
-					// pb={}
-					// pl={}
-					// pr={}
-					// pt={}
-					// px={}
-					// py={}
-					// paddingInline={}
-					// paddingInlineStart={}
-					// paddingInlineEnd={}
-					// paddingBlock={}
-					// paddingBlockStart={}
-					// paddingBlockEnd={}
-					// typography={}
-					// fontFamily={}
-					// fontSize={}
-					// fontStyle={}
-					// fontWeight={}
-					// letterSpacing={}
-					// lineHeight={}
-					// textAlign={}
-				>
-					This is a box
-				</Box>
 			</Base>
 		</>
 	)
