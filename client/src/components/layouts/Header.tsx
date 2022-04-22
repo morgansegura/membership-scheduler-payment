@@ -9,13 +9,33 @@ import { AppBar } from 'components/core'
 import { siteMetadata } from 'utils'
 // [Styles]
 import { Container } from 'styles/Container'
-import { Header as HeaderWrapper, Logo, Menu, Nav } from 'styles/Header'
+import { Slide } from 'styles/core/utils/Slide'
+import { Logo, Menu, Nav } from 'styles/Header'
 
 Router.events.on('routeChangeStart', NProgress.start)
 Router.events.on('routeChangeError', NProgress.done)
 Router.events.on('routeChangeComplete', NProgress.done)
 
-type Props = {}
+interface Props {
+	window?: () => Window
+	children: React.ReactElement
+}
+
+function HideOnScroll(props: Props) {
+	const { children, window } = props
+
+	const trigger = useScrollTrigger({
+		target: window ? window() : undefined,
+	})
+
+	return (
+		<Slide appear={false} direction="down" in={!trigger}>
+			{children}
+		</Slide>
+	)
+}
+
+function HideAppBar(props: Props) {}
 
 const Header: React.FC<Props> = () => {
 	return (

@@ -1,5 +1,5 @@
 const siteMetadata = {
-	companyName: 'Youth Sports',
+	companyName: 'bananas eating monkeys',
 	phoneNumber: '(xxx) xxx-xxxx',
 	siteUrl: 'http://localhost:3000',
 	email: 'yourName@example.com',
@@ -8,7 +8,7 @@ const siteMetadata = {
 	facebook: 'https://www.facebook.com/example.page',
 	instagram: 'https://www.instagram.com/example.page',
 	linkedin: 'https://www.linkedin.com/in/example.page',
-	siteLogoSquare: ''
+	siteLogoSquare: '',
 }
 
 export default siteMetadata

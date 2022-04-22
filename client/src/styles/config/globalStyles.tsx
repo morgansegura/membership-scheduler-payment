@@ -89,8 +89,8 @@ export const GlobalStyle = css`
 	body {
 		padding: 0;
 		margin: 0;
-		font-family: ${props => props.theme.typography.fontFamilySans1};
-		font-size: ${props => props.theme.typography.fontSize};
+		font-family: ${props => props.theme.typography.fontBase};
+		font-size: ${props => props.theme.typography.fontSizeBase};
 		background-color: ${props => props.theme.palette.background.default};
 		-webkit-text-size-adjust: 100%;
 		-moz-osx-font-smoothing: grayscale;

@@ -3,6 +3,7 @@ import React from 'react'
 import { Base, HeadContent, RoleGuardLayout } from 'components'
 // [Utils]
 import { siteMetadata } from 'utils'
+import { Content } from 'styles/Container'
 
 type Props = {
 	user: any
@@ -17,19 +18,30 @@ const Home: React.FC<Props> = () => {
 				canonicalUrl={`${siteMetadata.siteUrl}/`}
 			/>
 			<Base>
-				<p>The Base layout is on the home page</p>
-				<RoleGuardLayout level="guest">
-					<h1>Guest level html</h1>
-				</RoleGuardLayout>
-				<RoleGuardLayout level="member">
-					<h1>Member level html</h1>
-				</RoleGuardLayout>
-				<RoleGuardLayout level="mod">
-					<h1>Moderator level html</h1>
-				</RoleGuardLayout>
-				<RoleGuardLayout level="admin">
-					<h1>Admin level html</h1>
-				</RoleGuardLayout>
+				<Content>
+					<RoleGuardLayout level="guest">
+						<h1>Guest level html</h1>
+					</RoleGuardLayout>
+					<RoleGuardLayout level="member">
+						<h1>Member level html</h1>
+					</RoleGuardLayout>
+					<RoleGuardLayout level="mod">
+						<h1>Moderator level html</h1>
+					</RoleGuardLayout>
+					<RoleGuardLayout level="admin">
+						<h1>Admin level html</h1>
+					</RoleGuardLayout>
+				</Content>
+				<p>
+					{[...new Array(30)]
+						.map(
+							() => `Cras mattis consectetur purus sit amet fermentum.
+Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
+						)
+						.join('\n')}
+				</p>
 			</Base>
 		</>
 	)
